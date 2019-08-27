@@ -1,4 +1,4 @@
 package com.entity;
 
-public class ccc {
+public class User {
 }
