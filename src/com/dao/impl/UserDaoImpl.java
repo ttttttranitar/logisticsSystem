@@ -1,4 +1,23 @@
 package com.dao.impl;
 
-public class UserDaoImpl {
+import com.dao.UserDao;
+import com.entity.User;
+import com.util.DButil;
+
+import java.sql.SQLException;
+
+public class UserDaoImpl extends DButil implements UserDao {
+    @Override
+    public User logIn(String name, String passwd) throws SQLException {
+        String sql="select * from user where user_name=? and user_password=?";
+        User user=null;
+        res=queryDB(sql,name,passwd);
+        if(res!=null){
+            user=new User();
+            user.setUser_id(res.getInt("user_id"));
+            user.setUser_name(res.getString(" user_name"));
+
+        }
+        return user;
+    }
 }
