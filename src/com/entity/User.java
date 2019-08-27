@@ -5,6 +5,8 @@ public class User {/*用户类*/
     private String user_name;//用户名
     private String password;//密码
 
+    public User() {
+    }
     public User(int user_id, String user_name, String password) {
         this.user_id = user_id;
         this.user_name = user_name;
