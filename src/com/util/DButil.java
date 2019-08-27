@@ -8,10 +8,10 @@ import java.util.Properties;
 
 public class DButil {
     private static DataSource dataSource=null;
-    private Connection conn=null;
-    private PreparedStatement stat=null;
-    private ResultSet res=null;
-    private CallableStatement callStat=null;
+    protected Connection conn=null;
+    protected PreparedStatement stat=null;
+    protected ResultSet res=null;
+    protected CallableStatement callStat=null;
     static{
         Properties prop=new Properties();
         try{
