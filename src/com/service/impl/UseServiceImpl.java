@@ -1,4 +1,22 @@
 package com.service.impl;
 
-public class UseServiceImpl {
+import com.dao.impl.UserDaoImpl;
+import com.entity.User;
+import com.service.UserService;
+
+import java.sql.SQLException;
+
+public class UseServiceImpl implements UserService {
+    @Override
+    public User logIn(String name, String passwd) {
+        try {
+            return new UserDaoImpl().logIn(name, passwd);
+        } catch (SQLException e) {
+            System.err.println("Êý¾Ý¿â´íÎó");
+            e.printStackTrace();
+            return  null;
+        }
+
+
+    }
 }
