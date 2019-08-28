@@ -15,7 +15,11 @@ public class UserDaoImpl extends DButil implements UserDao {
         if(res.next()){
             user=new User();
             user.setUser_id(res.getInt("user_id"));
+
             user.setUser_name(res.getString("user_name"));
+
+            user.setUser_name(res.getString(" user_name"));
+
         }
         return user;
     }
