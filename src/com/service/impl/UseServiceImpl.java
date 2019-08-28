@@ -12,7 +12,7 @@ public class UseServiceImpl implements UserService {
         try {
             return new UserDaoImpl().logIn(name, passwd);
         } catch (SQLException e) {
-            System.err.println("Êı¾İ¿â´íÎó");
+            System.err.println("æ•°æ®åº“é”™è¯¯");
             e.printStackTrace();
             return  null;
         }
