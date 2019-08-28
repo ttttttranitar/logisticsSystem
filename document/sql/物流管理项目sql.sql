@@ -9,7 +9,7 @@ birthdate varchar(15),
 user_statue int(2));
 
 create table custom(
-custom_id int(5) primary key auto_increment,
+custom_id VARCHAR(8) primary key auto_increment,
 custom_name varchar(20) not null,
 fax varchar(6) ,
 phone varchar(12),
@@ -40,8 +40,8 @@ insurance_license varchar(20)
  user_name varchar(20) not null,
  user_password varchar(12)
  );
- 
- 
+
+
 create table car(
 car_id varchar(20) primary key,
 car_type varchar(20) not null,
@@ -55,6 +55,22 @@ is_company_car int(2),
 company_tel varchar(13)
 );
 
+create table custom_order(
+order_id varchar(10) primary key,
+sender_id VARCHAR(8),
+sender_name varchar(20) not null,
+sender_phone varchar(12) ,
+sender_address varchar(20),
+reciever_id  VARCHAR(8),
+reciever_name varchar(20) not null,
+reciever_phone varchar(12),
+reciever_address varchar(20),
+order_statue varchar(16),
+order_amount double(7,2),
+submit_date varchar(16)
+);
+
+ 
 
 
  
