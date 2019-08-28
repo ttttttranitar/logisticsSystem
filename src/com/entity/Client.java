@@ -1,11 +1,12 @@
 package com.entity;
 
+
 public class Client {//客户类
-    private int customer_id;//客户编号
+    private String customer_id;//客户编号
     private String customer_name;//客户姓名
     private String phone;//电话
     private String faxed;//传真
-    private int postcode;//邮政编码
+    private String postcode;//邮政编码
     private  String site;//地址
     private  String contacts;//联系人
     private  String Contact_phone;//联系人手机
@@ -17,8 +18,7 @@ public class Client {//客户类
     public Client() {
     }
 
-    public Client(int customer_id, String customer_name, String phone, String faxed, int postcode, String site, String contacts, String contact_phone, String client_type, String enterprise_property, String enterprise_scale, String email) {
-        this.customer_id = customer_id;
+    public Client(String customer_name, String phone, String faxed, String postcode, String site, String contacts, String contact_phone, String client_type, String enterprise_property, String enterprise_scale, String email) {
         this.customer_name = customer_name;
         this.phone = phone;
         this.faxed = faxed;
@@ -32,11 +32,11 @@ public class Client {//客户类
         this.email = email;
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 
@@ -64,11 +64,11 @@ public class Client {//客户类
         this.faxed = faxed;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
