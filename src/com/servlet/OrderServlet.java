@@ -2,7 +2,7 @@ package com.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.entity.Order;
-import com.entity.pageBean;
+import com.entity.PageBean;
 import com.service.OrderService;
 import com.service.impl.OrderServiceImpl;
 
@@ -41,6 +41,7 @@ public class OrderServlet extends HttpServlet {
             order.setOrder_amount(Double.parseDouble(request.getParameter("order_amount")));
             order.setSubmit_date(request.getParameter("submit_date"));
             if(service.addOrder(order)>0){
+                  pw.print("{msg:'添加成功'}");
                   response.sendRedirect(request.getContextPath()+"");
             }else{
 
@@ -62,7 +63,7 @@ public class OrderServlet extends HttpServlet {
 
         else if(method.equals("show")){
             OrderService service=new OrderServiceImpl();
-            pageBean page=new pageBean();
+            PageBean page=new PageBean();
             int currentPage=request.getParameter("currentPage")==null?1:Integer.parseInt(request.getParameter("currentPage"));
             page.setPagesize(5);
             page.setCurrentPage(currentPage);
@@ -73,6 +74,7 @@ public class OrderServlet extends HttpServlet {
                 String pageJSON=JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");//将JSON字符串发送到页面
                 pw.print(pageJSON);
             }else {
+                pw.print("{meg:'没有数据'}");
 
             }
 
