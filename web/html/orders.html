@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接货单填写页面</title>
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/admin.css">
+    <style>
+        .wd-100 {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form-item" style="margin-top: 20px">
+    <form class="layui-form" action="" id="goodsBillForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label wd-100">发货客户编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="Shipping_custome_rnumber" name="remark" placeholder="请输入发货客户编号"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label wd-100">发货客户</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="Shipping_custome" name="remark" placeholder="请输入发货客户"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label wd-100">发货客户电话</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="Shipping_custome_phone" name="remark" placeholder="请输入发货客户电话"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label wd-100">发货客户地址</label>
+            <div class="layui-input-inline">
+                <input type="text" id="Shipping_customer_address" name="remark" placeholder="请输入发货客户地址"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label wd-100">收货客户编号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="Receiving_customer_number" name="remark" placeholder="请输入收货客户编号"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label wd-100">收货客户</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="Receiving_customer" name="remark" placeholder="请输入收货客户"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label wd-100">收货客户电话</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="Receiving_customer_phone" name="remark" placeholder="请输入收货客户电话"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label wd-100">收货客户地址</label>
+            <div class="layui-input-inline">
+                <input type="text" id="Receiving_customer_address" name="remark" placeholder="请输入收货客户地址"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="addGoodsBill" id="addGoodsBill">立即提交</button>
+                <button type="reset" id="resetForm" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../../layui/layui.js"></script>
+<script src="../../../js/jquery/jquery-3.3.1.js"></script>
+<script src="../../../js/jquery/jquery.cookie.js"></script>
+
+<script src="../../../js/nginx.js"></script>
+<script src="../../../js/goodsBillControl/edit/editGoodsBill.js"></script>
+
+</body>
+</html>

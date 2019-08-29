@@ -1,0 +1,10 @@
+.size{
+    float: left;
+    position: relative;
+    top: 300px;
+    left: 600px;
+    font-size: 40px;
+}
+.img{
+    margin-top: -50px;
+}
