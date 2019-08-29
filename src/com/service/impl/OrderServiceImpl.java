@@ -73,9 +73,9 @@ public class OrderServiceImpl implements OrderService {
            result=dao.changeStatue(statue,orderId);
         }catch (SQLException e){
             System.err.println("数据库错误");
+            result=-1;
             e.printStackTrace();
-            return -1;
         }
-        return result;
+        return  result;
     }
 }
