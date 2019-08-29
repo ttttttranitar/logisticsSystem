@@ -18,8 +18,9 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库查询错误");
             e.printStackTrace();
+            return null;
         }
-        return null;
+
 
     }
 
@@ -30,8 +31,9 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库错误");
             e.printStackTrace();
+            return null;
         }
-        return null;
+
     }
 
     @Override
@@ -42,26 +44,20 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库错误");
             e.printStackTrace();
-            return 0;
+            return -1;
         }
 
     }
 
     @Override
-    public   String idGenerator() {
+    public   String idGenerator() throws  SQLException{
         OrderDao dao=new OrderDaoImpl();
         Date now=new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyMMdd");
         String id="";
-        try{
-            do{
-                 id=dateFormat.format(now)+String.valueOf(Math.random()*10000).substring(0, 4);//将double型数据转化为String并截取前4位
-            }while(dao.isExisting(id));
-        }catch(SQLException e){
-            System.err.println("数据库查询错误");
-            id="";
-            e.printStackTrace();
-        }
+        do{
+            id=dateFormat.format(now)+String.valueOf(Math.random()*10000).substring(0, 4);//将double型数据转化为String并截取前4位
+        }while(dao.isExisting(id));
         return id;
     }
 
@@ -77,5 +73,16 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return  result;
+    }
+
+    @Override
+    public int totalOrder() {
+        try{
+            return new OrderDaoImpl().totalOrder();
+        }catch (SQLException e){
+            System.out.println("数据库错误");
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
