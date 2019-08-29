@@ -9,17 +9,19 @@ birthdate varchar(15),
 user_statue int(2));
 
 create table custom(
-custom_id VARCHAR(8) primary key auto_increment,
+custom_id VARCHAR(8) primary key ,
 custom_name varchar(20) not null,
-fax varchar(6) ,
+fax varchar(12) ,
 phone varchar(12),
 mail varchar(20),
 addr varchar(20),
 email varchar(20),
 contact varchar(20),
+contact_phone varchar(12),
 client_type varchar(20),
-company_type varbinary(10),
-company_scale varchar(10)
+company_type VARCHAR(10),
+company_scale varchar(10),
+
 );
 
 create table driver(
@@ -40,8 +42,8 @@ insurance_license varchar(20)
  user_name varchar(20) not null,
  user_password varchar(12)
  );
-
-
+ 
+ 
 create table car(
 car_id varchar(20) primary key,
 car_type varchar(20) not null,
