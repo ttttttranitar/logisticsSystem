@@ -50,20 +50,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public   String idGenerator() {
+    public   String idGenerator() throws  SQLException{
         OrderDao dao=new OrderDaoImpl();
         Date now=new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyMMdd");
         String id="";
-        try{
-            do{
-                 id=dateFormat.format(now)+String.valueOf(Math.random()*10000).substring(0, 4);//将double型数据转化为String并截取前4位
-            }while(dao.isExisting(id));
-        }catch(SQLException e){
-            System.err.println("数据库查询错误");
-            id="";
-            e.printStackTrace();
-        }
+        do{
+            id=dateFormat.format(now)+String.valueOf(Math.random()*10000).substring(0, 4);//将double型数据转化为String并截取前4位
+        }while(dao.isExisting(id));
         return id;
     }
 
