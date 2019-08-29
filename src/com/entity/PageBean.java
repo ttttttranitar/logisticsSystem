@@ -2,7 +2,7 @@ package com.entity;
 
 import java.util.List;
 
-public class pageBean<T> {
+public class PageBean<T> {
     private List<T> pageList;
     private int currentPage=1;
     private int totalPage=1;
