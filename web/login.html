@@ -12,12 +12,11 @@
     <link href="css/login/styles.css" rel="stylesheet" type="text/css" />
     <link href="css/login/demo.css" rel="stylesheet" type="text/css" />
     <link href="css/login/loaders.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
 	<div class='login'>
         <div class="layui-form-item">
-            <form class="layui-form" action="" id="loginForm">
+            <form class="layui-form"  method="post" action="LoginServlet?method=login" id="loginForm">
                 <div class='login_title'>
                     <span>登录</span>
                 </div>
@@ -46,7 +45,7 @@
                         <div class='login_fields__submit' align="center">
                             <div class="layui-input-block">
                                 <!--<input type='button' value='登录'>-->
-                                <button class="layui-btn" lay-submit lay-filter="login">登录</button>
+                                <button class="layui-btn" lay-submit lay-filter="login"id="login">登录</button>
                             </div>
                         </div>
                     </div>
@@ -99,6 +98,9 @@
 	            }, 200);
 	        }
 	    });
+	    $("#login").click(function () {
+            $("#loginForm").submit();
+        })
 
     </script>
 
