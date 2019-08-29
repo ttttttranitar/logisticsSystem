@@ -10,4 +10,5 @@ public interface OrderService {
     public int addOrder(Order order);
     public String idGenerator();
     public int changeStatue(String statue,String orderId);
+    public  int totalOrder();
 }

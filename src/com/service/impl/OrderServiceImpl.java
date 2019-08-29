@@ -18,8 +18,9 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库查询错误");
             e.printStackTrace();
+            return null;
         }
-        return null;
+
 
     }
 
@@ -30,8 +31,9 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库错误");
             e.printStackTrace();
+            return null;
         }
-        return null;
+
     }
 
     @Override
@@ -42,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
         }catch (SQLException e){
             System.err.println("数据库错误");
             e.printStackTrace();
-            return 0;
+            return -1;
         }
 
     }
@@ -77,5 +79,16 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return  result;
+    }
+
+    @Override
+    public int totalOrder() {
+        try{
+            return new OrderDaoImpl().totalOrder();
+        }catch (SQLException e){
+            System.out.println("数据库错误");
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
