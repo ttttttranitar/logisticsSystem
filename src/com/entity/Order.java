@@ -1,15 +1,15 @@
 package com.entity;
 
-public class Order {
-    private  String order_id;
-    private String sender_id;
-    private String sender_name;
-    private  String sender_phone;
-    private String sender_address;
-    private String reciever_id;
-    private String reciever_name;
-    private String reciever_phone;
-    private String reciever_address;
+public class Order {//账单类
+    private  String order_id;//账单编号
+    private String sender_id;//发货客户编号
+    private String sender_name;//发货客户
+    private  String sender_phone;//发货客户电话
+    private String sender_address;//发货客户地址
+    private String reciever_id;//收货客户编号
+    private String reciever_name;//收货客户
+    private String reciever_phone;//收货客户电话
+    private String reciever_address;//收货客户地址
 
 
     private String order_statue;
