@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-<<<<<<< HEAD
-    <file url="file://$PROJECT_DIR$/src/com/service/impl/UseServiceImpl.java" charset="GBK" />
-=======
     <file url="file://$PROJECT_DIR$/src/com/service/impl/UseServiceImpl.java" charset="UTF-8" />
->>>>>>> f69072eb1ef605e442399112ef2be718c898c5f9
     <file url="file://$PROJECT_DIR$/src/com/util/DButil.java" charset="GBK" />
   </component>
 </project>
