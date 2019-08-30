@@ -32,10 +32,10 @@ public class OrderDaoImpl extends DButil implements OrderDao {
                  order.setOrder_statue(res.getString("order_statue"));
                  order.setOrder_amount(res.getDouble("order_amount"));
             }
+            return order;
         }finally {
             closeALL(conn,stat,res);
         }
-        return order;
     }
 
     @Override
@@ -69,15 +69,10 @@ public class OrderDaoImpl extends DButil implements OrderDao {
 
     @Override
     public int addOrder(Order order) throws SQLException {
-
         String sql="insert int custom_order value(?,?,?,?,?,?,?,?,?,?,?,?)";
         int result=0;
-        try{
-            result=updateDB(sql,order.getOrder_id(),order.getSender_id(),order.getSender_name(),order.getSender_phone(),order.getSender_address(),order.getReciever_id(),order.getReciever_name(),order.getSender_phone(),order.getReciever_address(),order.getOrder_statue(),order.getOrder_amount(),order.getSubmit_date());
-        }finally {
-            return result;
-        }
-
+        result=updateDB(sql,order.getOrder_id(),order.getSender_id(),order.getSender_name(),order.getSender_phone(),order.getSender_address(),order.getReciever_id(),order.getReciever_name(),order.getSender_phone(),order.getReciever_address(),order.getOrder_statue(),order.getOrder_amount(),order.getSubmit_date());
+        return result;
     }
 
     @Override
@@ -97,11 +92,21 @@ public class OrderDaoImpl extends DButil implements OrderDao {
     public int changeStatue(String statue,String orderId) throws SQLException {
         String sql="update custom_order set order_statue=? where order_id=?";
         int result=0;
-        try{
-            result=updateDB(sql,statue,orderId);
-        }finally {
-            return result;
-        }
+        result=updateDB(sql,statue,orderId);
+        return result;
+    }
 
+    @Override
+    public int totalOrder() throws SQLException{
+        String sql="select count(order_id) from custom_order";
+        int result=0;
+        try{
+             res=queryDB(sql);
+             if(res.next())
+                 result=res.getInt(1);
+            return  result;
+        }finally {
+            closeALL(conn,stat,res);
+        }
     }
 }
