@@ -10,9 +10,7 @@ public class Order {//账单类
     private String reciever_name;//收货客户
     private String reciever_phone;//收货客户电话
     private String reciever_address;//收货客户地址
-
-
-    private String order_statue;
+    private String order_statue="已提交";//订单状态
     private double order_amount;
     private String submit_date;
 
