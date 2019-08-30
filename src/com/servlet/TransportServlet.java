@@ -1,8 +1,13 @@
 package com.servlet;
 
+import com.alibaba.fastjson.JSON;
+import com.entity.LayUIPageBean;
 import com.entity.Transport;
+import com.service.OrderService;
 import com.service.TransportService;
+import com.service.impl.OrderServiceImpl;
 import com.service.impl.TransportServiceImpl;
+import com.sun.org.apache.regexp.internal.RE;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "TransportServlet",urlPatterns = "/TransportServlet")
 public class TransportServlet extends HttpServlet {
@@ -22,6 +28,7 @@ public class TransportServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");//utf-8解析json文件
         String method=request.getParameter("method");
         HttpSession session=request.getSession();
+        session.setMaxInactiveInterval(500);
         PrintWriter pw=response.getWriter();
 
         if(method.equals("add")){
@@ -38,6 +45,8 @@ public class TransportServlet extends HttpServlet {
             String orderId=request.getParameter("orderId");
             if(service.addTransport(transport,orderId)>0){
                 session.setAttribute("transport",transport);
+                OrderService orderService=new OrderServiceImpl();
+                orderService.changeStatue("运输中",orderId);//更改订单状态
                 pw.print("{msg:'添加成功'}");
             }else {
                 pw.print("{msg:'添加失败'}");
@@ -45,7 +54,17 @@ public class TransportServlet extends HttpServlet {
         }
 
         else if(method.equals("show")){
-
+            LayUIPageBean<Transport> page=new LayUIPageBean<>();
+            TransportService service=new TransportServiceImpl();
+            int currentPage=request.getParameter("page")==null?1:Integer.parseInt(request.getParameter("page"));
+            int pageSize=request.getParameter("limit")==null?1:Integer.parseInt(request.getParameter("limit"));
+            List<Transport> transportList=service.getTransportList(currentPage,pageSize);
+            if(transportList!=null){
+                page.setData(transportList);
+                page.setMsg("");
+                String pageJSON= JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");
+                pw.print(pageJSON);
+            }
         }
 
     }
