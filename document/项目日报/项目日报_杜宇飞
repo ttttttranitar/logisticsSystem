@@ -11,3 +11,6 @@
 2019/08/30
 1、连接订单表和完成订单表部分功能
 2、完成货运单的查询
+2019/09/02
+1、car的实体类，service、serviceimpl、dao、daoimpl
+2、driver的servlet的部分功能
