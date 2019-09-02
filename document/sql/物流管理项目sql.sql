@@ -1,4 +1,4 @@
-create database logistics;
+database logistics;
 create table emp(
 emp_id int(5) primary key auto_increment,
 emp_name varchar(20) not null,
@@ -40,8 +40,8 @@ insurance_license varchar(20)
  user_name varchar(20) not null,
  user_password varchar(12)
  );
- 
- 
+
+
 create table car(
 car_id varchar(20) primary key,
 car_type varchar(20) not null,
@@ -82,6 +82,11 @@ create table transport(
  transport_info varchar(25)
  );
 
-alter table custom add contact_phone varchar(12)
+alter table custom add contact_phone varchar(12);
+alter table car  add car_width double(5,2);
+alter table car  add car_height double(5,2);
+alter table driver add driver_address varchar(20);
+alter table driver_permit add driver_permit varchar(20);
+
 
 
