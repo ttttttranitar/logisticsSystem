@@ -42,8 +42,7 @@ public class OrderServlet extends HttpServlet {
             order.setOrder_amount(Double.parseDouble(request.getParameter("order_amount")));
             order.setSubmit_date(request.getParameter("submit_date"));
             if(service.addOrder(order)>0){
-                  pw.print("{msg:'添加成功'}");
-                  response.sendRedirect(request.getContextPath()+"");
+                  pw.print("添加成功");
             }else{
 
             }
