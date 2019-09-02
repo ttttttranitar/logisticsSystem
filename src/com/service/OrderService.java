@@ -12,4 +12,5 @@ public interface OrderService {
     public String idGenerator()throws SQLException;
     public int changeStatue(String statue,String orderId);
     public  int totalOrder();
+    public int delOrder(String orderId);
 }

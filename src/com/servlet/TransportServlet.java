@@ -53,6 +53,18 @@ public class TransportServlet extends HttpServlet {
             }
         }
 
+        else if(method.equals("get")){
+            TransportService service=new TransportServiceImpl();
+            Transport transport=null;
+            String transportId=request.getParameter("transportId");
+            transport=service.getTransport(transportId);
+            if(transport!=null){
+                String transportJSON=JSON.toJSONStringWithDateFormat(transport,"yyyy-MM-dd hh:MM");
+                pw.print(transportJSON);
+            }
+
+        }
+
         else if(method.equals("show")){
             LayUIPageBean<Transport> page=new LayUIPageBean<>();
             TransportService service=new TransportServiceImpl();

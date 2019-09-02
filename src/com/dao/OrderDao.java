@@ -12,4 +12,5 @@ public interface OrderDao {
     public boolean isExisting(String orderId) throws SQLException;
     public int changeStatue(String statue,String orderId) throws  SQLException;
     public int totalOrder() throws SQLException;
+    public int delOrder(String orderId)throws SQLException;
 }

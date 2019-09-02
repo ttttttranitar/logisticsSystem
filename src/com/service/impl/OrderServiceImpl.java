@@ -85,4 +85,15 @@ public class OrderServiceImpl implements OrderService {
             return -1;
         }
     }
+
+    @Override
+    public int delOrder(String orderId) {
+        try{
+            return  new OrderDaoImpl().delOrder(orderId);
+        }catch (SQLException e){
+            System.out.println("数据库错误");
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

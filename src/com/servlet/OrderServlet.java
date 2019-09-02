@@ -69,7 +69,7 @@ public class OrderServlet extends HttpServlet {
             LayUIPageBean<Order> page=new LayUIPageBean<Order>();
             int currentPage=request.getParameter("page")==null?1:Integer.parseInt(request.getParameter("page"));//当前页面由前端提供
             int pageSize=request.getParameter("limit")==null?1:Integer.parseInt(request.getParameter("limit"));//获取单个分页条目数
-            List<Order>orders=service.getOrderList(currentPage,5);
+            List<Order>orders=service.getOrderList(currentPage,pageSize);
             if(orders!=null){
                 page.setData(orders);
                 page.setCode(0);
@@ -77,6 +77,25 @@ public class OrderServlet extends HttpServlet {
                 pw.print(pageJSON);
             }
 
+        }
+
+        else if(method.equals("del")){
+            String orderId=request.getParameter("orderId");
+            OrderService service=new OrderServiceImpl();
+            if(service.delOrder(orderId)>0){
+
+            }
+        }
+
+        else if(method.equals("get")){
+            Order order=null;
+            OrderService service=new OrderServiceImpl();
+            String orderId=request.getParameter("orderId");
+            order=service.getOrder(orderId);
+            if(order!=null){
+                String orderJSON=JSON.toJSONStringWithDateFormat(order,"yyyy-MM-dd hh:MM");
+                pw.print(orderJSON);
+            }
         }
 
 

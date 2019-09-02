@@ -5,6 +5,8 @@ import com.entity.Order;
 import com.util.DButil;
 
 import java.sql.SQLException;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +71,7 @@ public class OrderDaoImpl extends DButil implements OrderDao {
 
     @Override
     public int addOrder(Order order) throws SQLException {
-        String sql="insert int custom_order value(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into custom_order value(?,?,?,?,?,?,?,?,?,?,?,?)";
         int result=0;
         result=updateDB(sql,order.getOrder_id(),order.getSender_id(),order.getSender_name(),order.getSender_phone(),order.getSender_address(),order.getReciever_id(),order.getReciever_name(),order.getSender_phone(),order.getReciever_address(),order.getOrder_statue(),order.getOrder_amount(),order.getSubmit_date());
         return result;
@@ -107,6 +109,20 @@ public class OrderDaoImpl extends DButil implements OrderDao {
             return  result;
         }finally {
             closeALL(conn,stat,res);
+        }
+    }
+
+    @Override
+    public int delOrder(String orderId) throws  SQLException{
+        try{
+            String sql="{call del_order(?,?)}";//调用存储过程
+            callStat=getConnection().prepareCall(sql);
+            callStat.setString(1,orderId);
+            callStat.registerOutParameter(2,Types.INTEGER);
+            callStat.execute();
+            return  callStat.getInt(2);//获取返回参数
+        }finally {
+            closeALL(conn,callStat,res);
         }
     }
 }

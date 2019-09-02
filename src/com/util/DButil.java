@@ -15,8 +15,8 @@ public class DButil {
     static{
         Properties prop=new Properties();
         try{
-            prop.load(DButil.class.getClassLoader().getResourceAsStream("dbcp_config.properties"));
-            dataSource=BasicDataSourceFactory.createDataSource(prop);
+            prop.load(DButil.class.getClassLoader().getResourceAsStream("dbcp_config.properties"));//加载类
+            dataSource=BasicDataSourceFactory.createDataSource(prop);//生成连接池
 
         }catch (Exception e){
             e.printStackTrace();
@@ -69,10 +69,11 @@ public class DButil {
                     stat.setObject(i+1,objs[i]);
             }
             result=stat.executeUpdate();
+            return result;
         }finally {
             closeALL(conn,stat,res);
         }
-        return result;
+
 
     }
 
