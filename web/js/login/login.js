@@ -4,7 +4,7 @@ layui.use(['layer', 'form', 'jquery'], function() {
         form = layui.form;
     
     form.on('submit(login)', function () {
-        let index = layer.load();
+        /*let index = layer.load();
         $.ajax({
             type: 'get',
             url: nginx_url + '/login',
@@ -29,7 +29,7 @@ layui.use(['layer', 'form', 'jquery'], function() {
                     }, 800);
                 }
             }
-        });
-        return false;
+        });*/
+        return true;
     });
 });

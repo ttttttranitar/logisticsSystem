@@ -6,7 +6,6 @@
     <title>海豚国际物流管理系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/welcome.css" />
     <script src="layui/layui.js"></script>
     <script src="js/jquery/jquery-3.3.1.js"></script>
     <script src="js/jquery/jquery.cookie.js"></script>
@@ -33,6 +32,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;" id="username">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <span></span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -163,4 +163,17 @@
 </div>
 
 </body>
+<script>
+    $(function(){
+        $.ajax({
+           "url":"LoginServlet?method=show",
+            "type":"get",
+            "data":"",
+            "dataType":"json",
+            "success":function(result){
+                       $("#username span").text(result.user_name);
+            }
+        });
+    })
+</script>
 </html>
