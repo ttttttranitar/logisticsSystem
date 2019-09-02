@@ -35,7 +35,11 @@ public class LoginServlet extends HttpServlet {
             if(user!=null) {
                 //如果成功进入index.html
                 session.setAttribute("User",user);
-                out.print("SUCCESS");
+                response.sendRedirect(request.getContextPath()+"/index.html");
+            }else {
+                //如果失败进入login.html
+                session.invalidate();
+                response.sendRedirect(request.getContextPath()+"/login.html");
             }
         }else if (method.equals("show")){//将用户名显示在右上角
             User user=(User)session.getAttribute("User");
