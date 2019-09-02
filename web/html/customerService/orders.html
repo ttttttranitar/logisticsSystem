@@ -13,11 +13,11 @@
 </head>
 <body>
 <div class="layui-form-item" style="margin-top: 20px">
-    <form class="layui-form" action="" id="goodsBillForm">
+    <form class="layui-form" action="../../OrderServlet?method=add" method="post" id="goodsBillForm">
         <div class="layui-form-item">
             <label class="layui-form-label wd-100">发货客户编号</label>
             <div class="layui-input-inline">
-                <select name="sendGoodsCustomerNo" lay-verify="required" lay-filter="changeSend" id="sendGoodsCustomerNo" lay-search>
+                <select  lay-verify="required" lay-filter="changeSend" id="sendGoodsCustomerNo" name="sender_id" lay-search>
                     <option value="">请选择发货客户编号</option>
                 </select>
             </div>
@@ -26,27 +26,27 @@
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">发货客户</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Shipping_custome" name="moneyOfChangePay" disabled class="layui-input">
+                    <input type="text" id="Shipping_custome" name="sender_name" disabled class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">发货客户电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Shipping_custome_phone" name="moneyOfChangePay" disabled class="layui-input">
+                    <input type="text" id="Shipping_custome_phone" name="sender_phone" disabled class="layui-input">
                 </div>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label wd-100">发货客户地址</label>
             <div class="layui-input-inline" style="width: 534px">
-                <input type="text" id="Shipping_customer_address" name="moneyOfChangePay" disabled class="layui-input">
+                <input type="text" id="Shipping_customer_address" name="sender_address" disabled class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label wd-100">收货客户编号</label>
             <div class="layui-input-inline">
-                <select name="sendGoodsCustomerNo" lay-verify="required" lay-filter="changeSend" id="sendGoodsCustomerNo1" lay-search>
-                    <option value="">请选择发货客户编号</option>
+                <select name="reciever_id" lay-verify="required" lay-filter="changeSend2" id="receiveGoodsCustomerNo " lay-search>
+                    <option value="">请选择收货客户编号</option>
                 </select>
             </div>
         </div>
@@ -54,48 +54,48 @@
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">收货客户</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Receiving_customer" name="moneyOfChangePay" disabled class="layui-input">
+                    <input type="text" id="Receiving_customer" name="reciever_name" disabled class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">收货客户电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Receiving_customer_phone" name="moneyOfChangePay" disabled class="layui-input">
+                    <input type="text" id="Receiving_customer_phone" name="reciever_phone" disabled class="layui-input">
                 </div>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label wd-100">收货客户地址</label>
             <div class="layui-input-inline" style="width: 534px">
-                <input type="text" id="Receiving_customer_address" name="moneyOfChangePay" disabled class="layui-input">
+                <input type="text" id="Receiving_customer_address" name="reciever_address" disabled class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label wd-100">订单日期</label>
             <div class="layui-input-inline">
-                <input type="text" name="sendGoodsDate" id="sendGoodsDate" class="layui-input test-item" />
+                <input type="text" name="submit_date" id="sendGoodsDate" class="layui-input test-item" />
             </div>
         <!--金额-->
             <label class="layui-form-label wd-100">金额</label>
             <div class="layui-input-inline">
-                <input type="text" id="money" name="remark" placeholder="请输入金额"
+                <input type="text" id="money" name="order_amount" placeholder="请输入金额"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="addGoodsBill" id="addGoodsBill">立即提交</button>
+                <button type="submit" class="layui-btn" lay-submit lay-filter="addGoodsBill" id="addGoodsBill">立即提交</button>
                 <button type="reset" id="resetForm" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
 </div>
-<script src="../../../layui/layui.js"></script>
-<script src="../../../js/jquery/jquery-3.3.1.js"></script>
-<script src="../../../js/jquery/jquery.cookie.js"></script>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/jquery/jquery-3.3.1.js"></script>
+<script src="../../js/jquery/jquery.cookie.js"></script>
 
-<script src="../../../js/nginx.js"></script>
-<script src="../../../js/goodsBillControl/edit/editGoodsBill.js"></script>
+<script src="../../js/nginx.js"></script>
+<script src="../../js/goodsBillControl/edit/editGoodsBill.js"></script>
 
 </body>
 </html>

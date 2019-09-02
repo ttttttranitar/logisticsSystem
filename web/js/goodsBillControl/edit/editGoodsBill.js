@@ -1,5 +1,5 @@
 layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function() {
-    let element = layui.element,
+    var element = layui.element,
         form = layui.form,
         laydate = layui.laydate,
         layer = layui.layer,
@@ -23,36 +23,39 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         value: new Date()
     });
 
-    let employeeId = $.cookie('loginId');
+    var employeeId = $.cookie('loginId');
     $("#writeBillPerson").val(employeeId);
     $("#employeeCode").val(employeeId);
 
     $.ajax({
         type: "get",
-        url: nginx_url + "/selectAllCusCode",
+        url: "../../../OrderServlet?method=show",
+        data:'limit='+10,
         async: false,
         success: function (result) {
-            $.each(result, function (i, item) {
-                let option = "<option value='" + item + "'>";
-                option += item;
+            $.each(result.data, function (i, item) {
+                var  option = "<option value='" + item.customer_id + "'>";//从返回的用户表中得到每一个用户id
+                option += item.customer_id;
                 option += "</option>";
                 $("#sendGoodsCustomerNo").append(option);
-                $("#receiveGoodsCustomerCode").append(option);
+                $("#receiveGoodsCustomerNo").append(option);
                 form.render();
             });
         }
 
     });
 
+
     form.on('select(changeSend)', function (data) {
-        // ajax
+        // ajax获取客户信息
         $.ajax({
-            type: 'get',
-            url: nginx_url + '/selectCusByCode/' + data.value,
+            type: 'post',
+            url: '../../../OrderServlet?method=get'+"&orderId="+$("#sendGoodsCustomerNo").val(),//请求servlet
+            dataType:"JSON",
             success: function (result) {
-                $("#sendGoodsCustomer").val(result.customer);
+                $("#sendGoodsCustomer").val(result.customer_name);//自动生成相关数据
                 $("#sendGoodsCustomerTel").val(result.phone);
-                $("#sendGoodsCustomerAddr").val(result.address);
+                $("#sendGoodsCustomerAddr").val(result.site);
             }
         });
     });
@@ -60,8 +63,9 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     form.on('select(changeSend2)', function (data) {
         // ajax
         $.ajax({
-            type: 'get',
-            url: nginx_url + '/selectCusByCode/' + data.value,
+            type: 'post',
+            dataType:"JSON",
+            url: '../../../OrderServlet?method=get'+"&orderId="+ $("#receiveGoodsCustomerNo").val(),
             success: function (result) {
                 $("#receiveGoodsCustomer").val(result.customer);
                 $("#receiveGoodsCustomerTel").val(result.phone);
@@ -82,7 +86,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     // 货运单信息添加
     // $("#addGoodsBill").click(function () {
     form.on('submit(addGoodsBill)', function () {
-
+/*
         $("#goodsBillForm :input").each(function () {
             $(this).removeAttr("disabled");
         });
@@ -119,8 +123,10 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                 }
                 console.log(result);
             }
-        });
-        return false;
+        });*/
+        return true;//通过表单提交
     });
+
+
 
 });
