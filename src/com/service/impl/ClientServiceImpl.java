@@ -21,6 +21,17 @@ public class ClientServiceImpl implements ClientService {
             return 0;
         }
     }
+
+    @Override
+    public int update(Client client) {
+        try {
+            return new ClientDaoImpl().update(client);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     //查找编号是否存在
     @Override
     public boolean isExist(String customer_id) {
@@ -36,6 +47,17 @@ public class ClientServiceImpl implements ClientService {
             }
             return false;
     }
+
+    @Override
+    public Client getClientByID(String customer_id) {
+        try {
+            return new ClientDaoImpl().getClientByID(customer_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public String IDgenerator() {
@@ -56,12 +78,22 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> getClientList() {
+    public List<Client> getClientList(int currentPage,int pageSize) {
         try {
-            return new  ClientDaoImpl().getUserListPage();
+            return new  ClientDaoImpl().getClientList(currentPage,pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
             return  null;
+        }
+    }
+
+    @Override
+    public int getClientCount() {
+        try {
+            return new ClientDaoImpl().getClientCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 

@@ -8,18 +8,18 @@
 <body>
 
 <div class="layui-form-item" style="margin-top: 10px">
-    <form class="layui-form" action="" id="cusForm">
+    <form class="layui-form" method="post" id="cusForm">
         <div class="layui-form-item">
             <label class="layui-form-label">客户编号</label>
             <div class="layui-input-inline">
-                <input type="text" name="customerCode" id="customerCode" disabled lay-verify="required" placeholder="请输入客户编号" autocomplete="off" class="layui-input">
+                <input type="text" name="customerCode" id="customerCode" readonly lay-verify="required" placeholder="请输入客户编号" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">客户姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="customer" id="customer" disabled lay-verify="required" placeholder="请输入客户姓名" autocomplete="off" class="layui-input">
+                    <input type="text" name="customer" id="customer" readonly lay-verify="required" placeholder="请输入客户姓名" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -93,7 +93,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="modifyCus" id="modifyCus">立即修改</button>
+                <button type="submit" class="layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="modifyCus" id="modifyCus">立即修改</button>
             </div>
         </div>
     </form>

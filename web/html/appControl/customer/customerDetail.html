@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>职员信息修改页</title>
+    <title>职员信息详情页</title>
     <link rel="stylesheet" href="../../../layui/css/layui.css">
 </head>
 <body>
 
 <div class="layui-form-item" style="margin-top: 10px">
-    <form class="layui-form" action="" id="cusForm">
+    <form class="layui-form" action="../../../ClientServlet?method=show" method="post" id="cusForm">
         <div class="layui-form-item">
             <label class="layui-form-label">客户编号</label>
             <div class="layui-input-inline">
@@ -91,11 +91,11 @@
                 </div>
             </div>
         </div>
-        <!--<div class="layui-form-item">-->
-            <!--<div class="layui-input-block">-->
-                <!--<button type="button" class="layui-btn layui-btn-radius" lay-submit lay-filter="goToMod" id="goToMod">修改</button>-->
-            <!--</div>-->
-        <!--</div>-->
+        <!--<div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn layui-btn-radius" lay-submit lay-filter="goToMod" id="goToMod">修改</button>
+            </div>
+        </div>-->
     </form>
 </div>
 <script src="../../../layui/layui.js"></script>

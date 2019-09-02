@@ -9,13 +9,28 @@ public class Client {//客户类
     private String postcode;//邮政编码
     private  String site;//地址
     private  String contacts;//联系人
-    private  String Contact_phone;//联系人手机
+    private  String contact_phone;//联系人手机
     private  String client_type;//客户类型
     private  String enterprise_property;//企业性质
     private  String enterprise_scale;//企业规模
     private  String email;//电子邮件
 
     public Client() {
+    }
+
+    public Client(String customer_id, String customer_name, String phone, String faxed, String postcode, String site, String contacts, String contact_phone, String client_type, String enterprise_property, String enterprise_scale, String email) {
+        this.customer_id = customer_id;
+        this.customer_name = customer_name;
+        this.phone = phone;
+        this.faxed = faxed;
+        this.postcode = postcode;
+        this.site = site;
+        this.contacts = contacts;
+        this.contact_phone = contact_phone;
+        this.client_type = client_type;
+        this.enterprise_property = enterprise_property;
+        this.enterprise_scale = enterprise_scale;
+        this.email = email;
     }
 
     public Client(String customer_name, String phone, String faxed, String postcode, String site, String contacts, String contact_phone, String client_type, String enterprise_property, String enterprise_scale, String email) {
@@ -25,7 +40,7 @@ public class Client {//客户类
         this.postcode = postcode;
         this.site = site;
         this.contacts = contacts;
-        Contact_phone = contact_phone;
+        this.contact_phone = contact_phone;
         this.client_type = client_type;
         this.enterprise_property = enterprise_property;
         this.enterprise_scale = enterprise_scale;
@@ -89,11 +104,11 @@ public class Client {//客户类
     }
 
     public String getContact_phone() {
-        return Contact_phone;
+        return contact_phone;
     }
 
     public void setContact_phone(String contact_phone) {
-        Contact_phone = contact_phone;
+        this.contact_phone = contact_phone;
     }
 
     public String getClient_type() {

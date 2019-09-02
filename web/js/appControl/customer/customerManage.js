@@ -1,5 +1,5 @@
 layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
-    let element = layui.element,
+    var element = layui.element,
     form = layui.form,
     laydate = layui.laydate,
     layer = layui.layer,
@@ -24,38 +24,27 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
             table.render({
                 elem: '#cusTable',
                 height: 'full-170',
-                url: nginx_url + '/selectAllCus', //数据接口
+                url: '../../../ClientServlet?method=ClientList', //数据接口
                 limit: 10,
                 limits: [ 10 ],
-                request: {
-                    pageName: 'pageNum' //页码的参数名称，默认：page
-                    ,limitName: 'limit' //每页数据量的参数名，默认：limit
-                },
-                response: {
-                    statusName: 'code', //数据状态的字段名称，默认：code
-                    statusCode: 200, //成功的状态码，默认：0
-                    msgName: 'msg', //状态信息的字段名称，默认：msgz
-                    countName: 'count', //数据总数的字段名称，默认：count
-                    dataName: 'data' //数据列表的字段名称，默认：data
-                },
                 page: true //开启分页
                 ,cellMinWidth: 60
                 ,cols: [[
                     { field: 'id', title: 'ID', fixed: 'left', sort: true, type: 'numbers' },
-                    { field: 'customerCode', title: '客户编号', align: "center", sort: true },
-                    { field: 'customer', title: '客户姓名', align: 'center' },
+                    { field: 'customer_id', title: '客户编号', align: "center", sort: true },
+                    { field: 'customer_name', title: '客户姓名', align: 'center' },
                     { field: 'phone', title: '电话', align: "center" },
-                    { field: 'address', title: '地址', align: "center", width: 440 },
+                    { field: 'site', title: '地址', align: "center", width: 440 },
                     { field: 'email', title: '电子邮件', align: "center", width: 180 },
                     { fixed: 'right', title:"操作", align: "center", toolbar: '#barDemo', width: 200 }
                 ]]
             });
-
             // 监听工具条
             table.on('tool(cusTool)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-                let data = obj.data; //获得当前行数据
-                let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-                let tr = obj.tr; //获得当前行 tr 的DOM对象
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+
 
                 if(layEvent === 'del'){ //删除
                     layer.confirm('真的删除么', function(index){
@@ -74,24 +63,25 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
                         })
                     });
                 } else if(layEvent === 'edit'){ //编辑
+
                     layer.open({
                         type: 2,
                         title: '客户信息修改',
-                        content: [ 'customerModify.html?customerCode=' + data.customerCode, 'no' ],
+                        content: [ 'customerModify.html?customerCode=' + data.customer_id, 'no' ],
                         area: [ '85%', '85%' ],
                         shadeClose: true,
-                        move: false,
-                        end: function() {
+                        move: true
+                        /*end: function() {
                             table.reload('cusTable', {
-                                url: nginx_url + '/selectAllCus'
+                                url: "customerModify.html"
                             })
-                        }
+                        }*/
                     });
                 } else if (layEvent === 'detail') {
                     layer.open({
                         type: 2,
                         title: '客户详细信息',
-                        content: [ 'customerDetail.html?customerCode=' + data.customerCode, 'no' ],
+                        content: [ 'customerDetail.html?customerCode=' + data.customer_id, 'no' ],
                         area: [ '85%', '85%' ],
                         shadeClose: true,
                         move: false,
@@ -104,19 +94,22 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
     form.on('submit(addCus)', function (data) {
         $.ajax({
             type: "post",
-            url: nginx_url + "/addCus",
+            url: "../../../ClientServlet?method=add",
             data: $("#cusForm").serialize(),
-            dataType: "json",
+            dataType: "text",
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
-                    layer.msg('客户添加成功', {
-                        time: 800
+                if (result == "SUCCESS") {
+                    layer.alert('客户添加成功', {
+                        time: 800,
+                        icon: 1,
+
                     });
                     $("#resetForm").click();
                 } else {
-                    layer.msg('客户添加失败', {
-                        time: 800
+                    layer.alert('客户添加失败', {
+                        time: 800,
+                        icon: 1
                     });
                 }
                 console.log(result);
