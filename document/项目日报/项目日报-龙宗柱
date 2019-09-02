@@ -12,3 +12,6 @@
 20190830
 1、根据数据库修改网页，主页面有一个不显示，还没有找出来
 2、对中转创建了dao包、servlce、servlet
+20190902
+1、车辆管理dao层、entity层、service层、servlet层
+2、中转dao层、entity层、service层、servlet层
