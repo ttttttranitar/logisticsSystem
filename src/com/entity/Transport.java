@@ -1,15 +1,15 @@
 package com.entity;
 
 public class Transport {
-    private String transport_id;
-    private String start_date;
-    private String end_date;
-    private String pay_type;
-    private String transport_fee;
-    private String insurance_fee;
-    private String transport_start;
-    private String transport_distinatin;
-    private String transport_info;
+    private String transport_id;//运单号
+    private String start_date;//发货日期
+    private String end_date;//收货日期
+    private String pay_type;//付款方式
+    private String transport_fee;//运输费
+    private String insurance_fee;//保险费
+    private String transport_start;//收货地址
+    private String transport_distinatin;//发货地址
+    private String transport_info;//备注
 
 
 
