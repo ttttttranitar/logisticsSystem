@@ -74,7 +74,10 @@ public class TransportDaoImpl extends DButil implements TransportDao {
         int result=0;
         try{
             res=queryDB(sql);
-            result=res.getInt(1);
+            if(res.next()){
+                result=res.getInt(1);
+            }
+
         }finally {
             closeALL(conn,stat,res);
         }
