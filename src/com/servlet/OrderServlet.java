@@ -1,10 +1,13 @@
 package com.servlet;
 
 import com.alibaba.fastjson.JSON;
+import com.entity.Client;
 import com.entity.LayUIPageBean;
 import com.entity.Order;
 import com.entity.PageBean;
+import com.service.ClientService;
 import com.service.OrderService;
+import com.service.impl.ClientServiceImpl;
 import com.service.impl.OrderServiceImpl;
 
 import javax.servlet.ServletException;
@@ -42,15 +45,15 @@ public class OrderServlet extends HttpServlet {
             order.setOrder_amount(Double.parseDouble(request.getParameter("order_amount")));
             order.setSubmit_date(request.getParameter("submit_date"));
             if(service.addOrder(order)>0){
-                  pw.print("添加成功");
+               pw.print("SUCCESS");
             }else{
 
             }
         }
 
 
-        else if(method.equals("show")){
-            OrderService service=new OrderServiceImpl();
+        else if(method.equals("showClients")){
+            ClientService service=new ClientServiceImpl();
            /* PageBean page=new PageBean();//传统JQuery
             int currentPage=request.getParameter("currentPage")==null?1:Integer.parseInt(request.getParameter("currentPage"));
             page.setPagesize(5);
@@ -65,12 +68,12 @@ public class OrderServlet extends HttpServlet {
                 pw.print("{meg:'没有数据'}");
 
             }*/
-            LayUIPageBean<Order> page=new LayUIPageBean<Order>();
+            LayUIPageBean<Client> page=new LayUIPageBean<Client>();
             int currentPage=request.getParameter("page")==null?1:Integer.parseInt(request.getParameter("page"));//当前页面由前端提供
             int pageSize=request.getParameter("limit")==null?1:Integer.parseInt(request.getParameter("limit"));//获取单个分页条目数
-            List<Order>orders=service.getOrderList(currentPage,pageSize);
-            if(orders!=null){
-                page.setData(orders);
+            List<Client>Clients=service.getClientList(currentPage,pageSize);
+            if(Clients!=null){
+                page.setData(Clients);
                 page.setCode(0);
                 String pageJSON=JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");
                 pw.print(pageJSON);
@@ -83,6 +86,32 @@ public class OrderServlet extends HttpServlet {
             OrderService service=new OrderServiceImpl();
             if(service.delOrder(orderId)>0){
 
+            }
+        }
+
+        else if(method.equals("show")){
+            OrderService service=new OrderServiceImpl();
+            LayUIPageBean<Order> page=new LayUIPageBean<Order>();
+            int currentPage=request.getParameter("page")==null?1:Integer.parseInt(request.getParameter("page"));//当前页面由前端提供
+            int pageSize=request.getParameter("limit")==null?1:Integer.parseInt(request.getParameter("limit"));//获取单个分页条目数
+            List<Order> orders=service.getOrderList(currentPage,pageSize);
+            if(orders!=null){
+                page.setData(orders);
+                page.setMsg("添加成功");
+                String pageJSON=JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");
+                pw.print(pageJSON);
+            }
+
+        }
+
+        else if(method.equals("getClient")){
+            Client client=null;
+            ClientService service=new ClientServiceImpl();
+            String clientId=request.getParameter("clientId");
+            client=service.getClientByID(clientId);
+            if(client!=null){
+                String orderJSON=JSON.toJSONStringWithDateFormat(client,"yyyy-MM-dd hh:MM");
+                pw.print(orderJSON);
             }
         }
 

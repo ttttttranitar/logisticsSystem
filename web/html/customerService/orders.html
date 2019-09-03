@@ -17,7 +17,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label wd-100">发货客户编号</label>
             <div class="layui-input-inline">
-                <select  lay-verify="required" lay-filter="changeSend" id="sendGoodsCustomerNo" name="sender_id" lay-search>
+                <select  lay-verify="required" lay-filter="sendGoodsCustomerNo" id="sendGoodsCustomerNo" name="sender_id" lay-search>
                     <option value="">请选择发货客户编号</option>
                 </select>
             </div>
@@ -26,26 +26,26 @@
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">发货客户</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Shipping_custome" name="sender_name" disabled class="layui-input">
+                    <input type="text" id="Shipping_custome" name="sender_name" readonly class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">发货客户电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Shipping_custome_phone" name="sender_phone" disabled class="layui-input">
+                    <input type="text" id="Shipping_custome_phone" name="sender_phone" readonly class="layui-input">
                 </div>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label wd-100">发货客户地址</label>
             <div class="layui-input-inline" style="width: 534px">
-                <input type="text" id="Shipping_customer_address" name="sender_address" disabled class="layui-input">
+                <input type="text" id="Shipping_customer_address" name="sender_address" readonly class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label wd-100">收货客户编号</label>
             <div class="layui-input-inline">
-                <select name="reciever_id" lay-verify="required" lay-filter="changeSend2" id="receiveGoodsCustomerNo " lay-search>
+                <select name="reciever_id" lay-verify="required" lay-filter="receiveGoodsCustomerNo" id="receiveGoodsCustomerNo" lay-search>
                     <option value="">请选择收货客户编号</option>
                 </select>
             </div>
@@ -54,20 +54,20 @@
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">收货客户</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Receiving_customer" name="reciever_name" disabled class="layui-input">
+                    <input type="text" id="Receiving_customer" name="reciever_name" readonly class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label wd-100">收货客户电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="Receiving_customer_phone" name="reciever_phone" disabled class="layui-input">
+                    <input type="text" id="Receiving_customer_phone" name="reciever_phone" readonly class="layui-input">
                 </div>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label wd-100">收货客户地址</label>
             <div class="layui-input-inline" style="width: 534px">
-                <input type="text" id="Receiving_customer_address" name="reciever_address" disabled class="layui-input">
+                <input type="text" id="Receiving_customer_address" name="reciever_address" readonly class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

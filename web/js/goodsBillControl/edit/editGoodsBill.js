@@ -29,16 +29,18 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
 
     $.ajax({
         type: "get",
-        url: "../../../OrderServlet?method=show",
+        url: "../../../OrderServlet?method=showClients",
         data:'limit='+10,
         async: false,
+        dataType:"JSON",
         success: function (result) {
             $.each(result.data, function (i, item) {
                 var  option = "<option value='" + item.customer_id + "'>";//从返回的用户表中得到每一个用户id
                 option += item.customer_id;
                 option += "</option>";
-                $("#sendGoodsCustomerNo").append(option);
                 $("#receiveGoodsCustomerNo").append(option);
+                $("#sendGoodsCustomerNo").append(option);
+
                 form.render();
             });
         }
@@ -46,30 +48,30 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     });
 
 
-    form.on('select(changeSend)', function (data) {
+    form.on('select(sendGoodsCustomerNo)', function (data) {
         // ajax获取客户信息
         $.ajax({
             type: 'post',
-            url: '../../../OrderServlet?method=get'+"&orderId="+$("#sendGoodsCustomerNo").val(),//请求servlet
+            url: '../../../OrderServlet?method=getClient'+"&clientId="+$("#sendGoodsCustomerNo").val(),//请求servlet
             dataType:"JSON",
             success: function (result) {
-                $("#sendGoodsCustomer").val(result.customer_name);//自动生成相关数据
-                $("#sendGoodsCustomerTel").val(result.phone);
-                $("#sendGoodsCustomerAddr").val(result.site);
+                $("#Shipping_custome").val(result.customer_name);//自动生成相关数据
+                $("#Shipping_custome_phone").val(result.contact_phone);
+                $("#Shipping_customer_address").val(result.site);
             }
         });
     });
 
-    form.on('select(changeSend2)', function (data) {
+    form.on('select(receiveGoodsCustomerNo)', function (data) {
         // ajax
         $.ajax({
             type: 'post',
             dataType:"JSON",
-            url: '../../../OrderServlet?method=get'+"&orderId="+ $("#receiveGoodsCustomerNo").val(),
+            url: '../../../OrderServlet?method=getClient'+"&clientId="+ $("#receiveGoodsCustomerNo").val(),
             success: function (result) {
-                $("#receiveGoodsCustomer").val(result.customer);
-                $("#receiveGoodsCustomerTel").val(result.phone);
-                $("#receiveGoodsCustomerAddr").val(result.address);
+                $("#Receiving_customer").val(result.customer_name);
+                $("#Receiving_customer_phone").val(result.contact_phone);
+                $("#Receiving_customer_address").val(result.site);
             }
         });
     });
@@ -86,7 +88,6 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     // 货运单信息添加
     // $("#addGoodsBill").click(function () {
     form.on('submit(addGoodsBill)', function () {
-/*
         $("#goodsBillForm :input").each(function () {
             $(this).removeAttr("disabled");
         });
@@ -94,37 +95,42 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         $("#transferFee").attr("disabled", "disabled");
         $("#moneyOfChangePay").attr("disabled", "disabled");
 
-        $.ajax({
+        $.ajax({//通过ajax提交表单
             type: "post",
-            url: nginx_url + "/goodsBill/add",
+            url: "../../../OrderServlet?method=add",
             data: $("#goodsBillForm").serialize(),
-            dataType: "json",
+            dataType: "text",
             async: false,
             success: function (result) {
-                if (result.status === "SUCCESS") {
-                    layer.msg('货运单添加成功', {
+                if (result == "SUCCESS") {
+                    layer.msg('订单添加成功', {
                         time: 800,
-                        icon: 1
-                    });
-                    layer.open({
+                        icon: 1},
+                        function () {
+                            let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                            window.parent.location.reload();//新增成功后刷新父界面
+                        }
+                    );
+                /*    layer.open({
                         type: 2,
                         title: '货运单编号：' + result.goodsBillCode,
                         content: [ 'editGoods.html?id=' + result.goodsBillCode, 'no' ],
                         area: [ '85%', '85%' ],
                         shadeClose: true,
                         move: false
-                    });
+                    });*/
                     $("#resetForm").click();
                 } else {
-                    layer.msg('货运单添加失败', {
+                    layer.msg('订单添加失败', {
                         time: 800,
                         icon: 2
                     });
                 }
                 console.log(result);
             }
-        });*/
-        return true;//通过表单提交
+        });
+        return false;//通过表单提交
     });
 
 
