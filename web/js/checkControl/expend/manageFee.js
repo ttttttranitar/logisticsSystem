@@ -11,20 +11,20 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
         theme: '#393D49',
         value: new Date()
     });
-    laydate.render({
+    /*laydate.render({
         elem: '#payoutMonth',
         type: 'month',
         theme: '#393D49'
-    });
+    });*/
 
     // 员工工资添加
     form.on('submit(addManageFee)', function (data) {
-        $.ajax({
+        /*  $.ajax({
             type: "post",
-            url: nginx_url + "/check/addManageFee",
+            url:"../../../CostServlet?method=add",
             data: $("#manageFeeForm").serialize(),
             dataType: "json",
-            success: function (result) {
+          success: function (result) {
                 if (result === "SUCCESS") {
                     layer.msg('管理费用添加成功', {
                         time: 800
@@ -39,8 +39,8 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
                     });
                 }
             }
-        });
-        return false;
+        });*/
+        return true;
     });
 
 });

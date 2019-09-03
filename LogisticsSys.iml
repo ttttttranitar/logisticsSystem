@@ -19,11 +19,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.21" level="application_server_libraries" />
     <orderEntry type="library" name="commons-dbcp2-2.2.0" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.0-bin" level="project" />
     <orderEntry type="library" name="fastjson-1.2.13" level="project" />
     <orderEntry type="library" name="ojdbc6" level="project" />
     <orderEntry type="library" name="mchange-commons-java-0.2.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.2" level="application_server_libraries" />
   </component>
 </module>

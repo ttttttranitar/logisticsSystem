@@ -8,21 +8,17 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
     let id = window.location.href.split("=")[1];
     $.ajax({
         type: "get",
-        url: nginx_url + "/check/findManageFee/" + id,
+        data:"administrative_fee_id="+id,
+        dataType:"json",
+        url: "../../../CostServlet?method=show",
         async: false,
         success: function (result) {
-            $.each(result, function (i, item) {
-                let temp_id = '#' + i;
-                $(temp_id).val(item);
-            });
-            if (result.writeDate != null && result.writeDate !== '') {
-                laydate.render({
-                    elem: '#writeDate',
-                    type: 'date',
-                    value: new Date(result.writeDate)
-                    // theme: 'grid'
-                });
-            }
+            $("#officeFee").val(result.officeFee);
+            $("#houseRent").val(result.houseRent);
+            $("#waterElecFee").val(result.waterElecFee);
+            $("#phoneFee").val(result.phoneFee);
+            $("#otherPayout").val(result.otherPayout);
+            $("#writeDate").val(result.writeDate);
         }
 
 

@@ -43,9 +43,9 @@ public class ClientServiceImpl implements ClientService {
             e.printStackTrace();
         }
         if (client!=null){
-                return true;
-            }
-            return false;
+            return true;
+        }
+        return false;
     }
 
     @Override

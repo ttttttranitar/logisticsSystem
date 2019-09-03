@@ -16,13 +16,13 @@ public class DriverDaoIpml extends DButil implements DriverDao {
     }
 
     @Override
-    public int modification(Driver driver_id) throws SQLException {
+    public int modification(Driver driver_id) throws SQLException {//修改
             String sql = "update  `driver` set (`driver_name`=?,`driver_phone`=?,`sex`=?,`birthdate`=?,`car_id`=?,`driver_info`=?,`driver_license`=?,`operation_license`=?,`insurance_license`=?) where `driver_id`=? ";
             return updateDB(sql, driver_id.getDriver_name(), driver_id.getDriver_phone(), driver_id.getSex(), driver_id.getBirthdate(), driver_id.getCar_id(), driver_id.getDriver_info(), driver_id.getDriver_license(), driver_id.getInsurance_license());
     }
     @Override
-    public Driver getDriver() throws SQLException {
-        String sql = "select `driver_id`,`driver_name`,`driver_phone`,`sex``birthdate`,`car_id`,`driver_info`,`driver_license`,`operation_license`,`insurance_license` from `driver` ";
+    public Driver getDriver() throws SQLException {//查询
+        String sql = "select `driver_id`,`driver_name`,`driver_phone`,`sex`,`birthdate`,`car_id`,`driver_info`,`driver_license`,`operation_license`,`insurance_license` from `driver` ";
         Driver driver;
         try {
             res = queryDB(sql);
@@ -48,7 +48,7 @@ public class DriverDaoIpml extends DButil implements DriverDao {
 
     @Override
     public Driver getDriverNumber(Driver driver_id) throws SQLException {
-        String sql = "select `driver_name`,`driver_phone`,`sex``birthdate`,`car_id`,`driver_info`,`driver_license`,`operation_license`,`insurance_license` from `driver` where `driver_id`=?";
+        String sql = "select `driver_name`,`driver_phone`,`sex`,`birthdate`,`car_id`,`driver_info`,`driver_license`,`operation_license`,`insurance_license` from `driver` where `driver_id`=?";
         Driver driver;
         try {
             res = queryDB(sql,driver_id);

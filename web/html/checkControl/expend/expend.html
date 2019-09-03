@@ -10,17 +10,17 @@
     <div class="layui-tab layui-tab-brief" lay-filter="demo">
         <ul class="layui-tab-title">
             <li class="layui-this">员工工资</li>
-            <li>财务费用</li>
-            <li>管理费用</li>
+            <li >财务费用</li>
+            <li >管理费用</li>
         </ul>
         <div class="layui-tab-content" style="height: 100px; display: block">
             <div class="layui-tab-item layui-show">
-                <table id="employeeWageTable" lay-filter="employeeWageTool"></table>
-                <script type="text/html" id="barDemo1">
-                    <a class="layui-btn layui-btn-xs" lay-event="addWage">录入</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="detail">查看详情</a>
-                </script>
-            </div>
+            <table id="employeeWageTable" lay-filter="employeeWageTool"></table>
+            <script type="text/html" id="barDemo1">
+                <a class="layui-btn layui-btn-xs" lay-event="addWage">录入</a>
+                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="detail">查看详情</a>
+            </script>
+        </div>
             <div class="layui-tab-item">
                 <table id="financeFeeTable"></table>
                 <div class="layui-form-item">
@@ -36,7 +36,7 @@
                 </script>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="addManageFee" id="addManageFee">添加管理费用</button>
+                        <button type="submit"  class="layui-btn" lay-submit lay-filter="addManageFee" id="addManageFee">添加管理费用</button>
                     </div>
                 </div>
             </div>

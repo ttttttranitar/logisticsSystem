@@ -19,7 +19,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             table.render({
                 elem: '#financeFeeTable',
                 height: 'full-170',
-                url: nginx_url + '/check/selectFinanceFee', //数据接口
+                url: '../../check/selectFinanceFee', //数据接口
                 limit: 10,
                 limits: [ 10 ],
                 request: {
@@ -47,25 +47,14 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             table.render({
                 elem: '#manageFeeTable',
                 height: 'full-170',
-                url: nginx_url + '/check/selectManageFee', //数据接口
+                url: "../../../CostServlet?method=CostList", //数据接口
                 limit: 10,
                 limits: [ 10 ],
-                request: {
-                    pageName: 'pageNum', //页码的参数名称，默认：page
-                    limitName: 'limit' //每页数据量的参数名，默认：limit
-                },
-                response: {
-                    statusName: 'code', //数据状态的字段名称，默认：code
-                    statusCode: 200, //成功的状态码，默认：0
-                    msgName: 'msg', //状态信息的字段名称，默认：msg
-                    countName: 'count', //数据总数的字段名称，默认：count
-                    dataName: 'data' //数据列表的字段名称，默认：data
-                },
                 page: true, //开启分页
                 cellMinWidth: 80,
                 cols: [[
                     { title: 'ID', fixed: 'left', sort: true, type: 'numbers' },
-                    { field: 'id', title: '管理费用id', sort: true },
+                    { field: 'administrative_fee_id', title: '管理费用id', sort: true },
                     { field: 'officeFee', title: '办公费' },
                     { field: 'houseRent', title: '房租费' },
                     { field: 'waterElecFee', title: '水电费' },
@@ -118,7 +107,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             layer.open({
                 type: 2,
                 title: '管理费用详细信息',
-                content: ['showManageFee.html?id=' + data.id ],
+                content: ['showManageFee.html?administrative_fee_id='+data.administrative_fee_id ],
                 area: ['85%', '85%'],
                 shadeClose: true,
                 move: false,
@@ -126,7 +115,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         }
     });
 
-    form.on('submit(addFinanceFee)', function () {
+    /*form.on('submit(addFinanceFee)', function () {
         layer.open({
             type: 2,
             title: '添加财务费用',
@@ -141,7 +130,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             }
         });
         return false;
-    });
+    });*/
     form.on('submit(addManageFee)', function () {
         layer.open({
             type: 2,
@@ -167,17 +156,6 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             url: nginx_url + '/selectAllEmp', //数据接口
             limit: 10,
             limits: [ 10 ],
-            request: {
-                pageName: 'pageNum', //页码的参数名称，默认：page
-                limitName: 'limit' //每页数据量的参数名，默认：limit
-            },
-            response: {
-                statusName: 'code', //数据状态的字段名称，默认：code
-                statusCode: 200, //成功的状态码，默认：0
-                msgName: 'msg', //状态信息的字段名称，默认：msg
-                countName: 'count', //数据总数的字段名称，默认：count
-                dataName: 'data' //数据列表的字段名称，默认：data
-            },
             page: true //开启分页
             ,cellMinWidth: 80
             ,cols: [[

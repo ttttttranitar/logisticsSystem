@@ -9,7 +9,7 @@
 <body>
 
 <div class="layui-form-item"  style="margin-top: 20px">
-    <form class="layui-form" action="" id="manageFeeForm">
+    <form class="layui-form" action="../../../CostServlet?method=add" id="manageFeeForm" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">办公费</label>
             <div class="layui-input-inline">
@@ -40,12 +40,12 @@
                 <input type="text" id="otherPayout" name="otherPayout" required lay-verify="required|number" placeholder="请输入其他支出" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+        <!--<div class="layui-form-item">
             <label class="layui-form-label">支出月份</label>
             <div class="layui-input-inline">
                 <input type="text" name="payoutMonth" id="payoutMonth" class="layui-input" />
             </div>
-        </div>
+        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">填写日期</label>
             <div class="layui-input-inline">
@@ -54,7 +54,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="button" class="layui-btn" lay-submit lay-filter="addManageFee" id="addManageFee">立即提交</button>
+                <button type="submit" class="layui-btn" lay-submit lay-filter="addManageFee" id="addManageFee">立即提交</button>
                 <button type="reset" id="resetForm" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>

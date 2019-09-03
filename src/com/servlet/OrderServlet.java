@@ -97,7 +97,6 @@ public class OrderServlet extends HttpServlet {
             List<Order> orders=service.getOrderList(currentPage,pageSize);
             if(orders!=null){
                 page.setData(orders);
-                page.setCount(service.totalOrder());
                 page.setMsg("添加成功");
                 String pageJSON=JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");
                 pw.print(pageJSON);

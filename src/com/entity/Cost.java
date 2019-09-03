@@ -1,6 +1,7 @@
 package com.entity;
 
 public class Cost {//资金类
+    private int id;
     private double income;//收入
     private double payout;//支出
     private double bizIncome;//营业收入
@@ -20,11 +21,49 @@ public class Cost {//资金类
     private double profit;//利润
     private double wage;//工资
     private String month;//月份
+    private double otherPayout;//其他支出（页面提交）
+    private String writeDate;//日期
+    private int administrative_fee_id;//管理费用id
 
     public Cost() {
     }
 
-    public Cost(double income, double payout, double bizIncome, double carriageMoney, double insurance, double unbizIncome, double bizFee, double carCarriage, double conveyWage, double manageFee, double officeFee, double houseRent, double waterElecFee, double phoneFee, double other, double financeFee, double profit, double wage, String month) {
+    public Cost(double officeFee, double houseRent, double waterElecFee, double phoneFee, double otherPayout, String writeDate ) {
+        this.officeFee = officeFee;
+        this.houseRent = houseRent;
+        this.waterElecFee = waterElecFee;
+        this.phoneFee = phoneFee;
+        this.otherPayout = otherPayout;
+        this.writeDate = writeDate;
+
+    }
+
+
+    public int getAdministrative_fee_id(){
+        return administrative_fee_id;
+    }
+    public double getOtherPayout() {
+        return otherPayout;
+    }
+
+    public String getWriteDate() {
+        return writeDate;
+    }
+
+    public void setOtherPayout(double otherPayout) {
+        this.otherPayout = otherPayout;
+    }
+
+    public void setWriteDate(String writeDate) {
+        this.writeDate = writeDate;
+    }
+
+    public void setAdministrative_fee_id(int administrative_fee_id) {
+        this.administrative_fee_id = administrative_fee_id;
+    }
+
+    public Cost(int id,double income, double payout, double bizIncome, double carriageMoney, double insurance, double unbizIncome, double bizFee, double carCarriage, double conveyWage, double manageFee, double officeFee, double houseRent, double waterElecFee, double phoneFee, double other, double financeFee, double profit, double wage, String month) {
+        this.id=id;
         this.income = income;
         this.payout = payout;
         this.bizIncome = bizIncome;
@@ -46,8 +85,7 @@ public class Cost {//资金类
         this.month = month;
     }
 
-    public Cost(double income, double payout, double bizIncome, double carriageMoney, double insurance, double unbizIncome, double bizFee, double carCarriage, double conveyWage, double manageFee, double officeFee, double houseRent, double waterElecFee, double phoneFee, double other, double financeFee, double profit, double wage, double month) {
-    }
+    public int getId() { return id; }
 
     public double getIncome() {
         return income;
@@ -124,6 +162,8 @@ public class Cost {//资金类
     public String getMonth() {
         return month;
     }
+
+    public void setId(int id) { this.id = id; }
 
     public void setIncome(double income) {
         this.income = income;
