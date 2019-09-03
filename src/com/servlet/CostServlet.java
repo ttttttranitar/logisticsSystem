@@ -40,7 +40,7 @@ public class CostServlet extends HttpServlet {
             Cost cost = new Cost(officeFee, houseRent, waterElecFee, phoneFee, otherPayout, writeDate);
             if (costService.save(cost) > 0) {
                 /*response.sendRedirect(request.getContextPath()+"/index.html");//跳转到index.html*/
-                out.println("上传成功");
+                out.print("SUCCESS");
             }
         }else if (method.equals("show")) {//显示
             int administrative_fee_id = Integer.parseInt(request.getParameter("administrative_fee_id"));
