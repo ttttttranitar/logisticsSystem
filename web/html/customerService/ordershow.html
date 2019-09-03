@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>职员信息详情页</title>
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
+</head>
+<body>
+
+<div class="layui-form-item" style="margin-top: 10px">
+    <form class="layui-form" action="../../../ClientServlet?method=show" method="post" id="cusForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">订单编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="orderId" id="orderId" readonly lay-verify="required" placeholder="请输入订单编号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">发货客户编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sender_id" id="sender_id" readonly lay-verify="required" placeholder="请输入发货客户编号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">发货客户</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sender_name" id="sender_name" readonly lay-verify="required|phone" placeholder="请输入发货客户" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发货客户地址</label>
+            <div class="layui-input-inline" style="width: 514px">
+                <input type="text" name="sender_address" id="sender_address" readonly lay-verify="required" placeholder="请输入发货客户地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">收货客户编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="reciever_id" id="reciever_id" readonly lay-verify="required" placeholder="请输入收货客户编号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">收货客户</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="reciever_name" id="reciever_name" readonly lay-verify="required|phone" placeholder="请输入收货客户" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货客户地址</label>
+            <div class="layui-input-inline" style="width: 514px">
+                <input type="text" name="reciever_address" id="reciever_address" readonly lay-verify="required" placeholder="请输入收货客户地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">发货日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="submit_date"  id="submit_date" readonly lay-verify="required" placeholder="请输入发货日期" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">金额</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="order_amount" id="order_amount" lay-verify="required|email" readonly placeholder="请输入金额" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <!--<div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn layui-btn-radius" lay-submit lay-filter="goToMod" id="goToMod">修改</button>
+            </div>
+        </div>-->
+    </form>
+</div>
+<script src="../../../layui/layui.js"></script>
+<script src="../../../js/nginx.js"></script>
+<script src="../../../js/goodsBillControl/edit/editGoodsBill.js"></script>
+<script src="../../../js/goodsBillControl/edit/edtshow.js"></script>
+</body>
+</html>

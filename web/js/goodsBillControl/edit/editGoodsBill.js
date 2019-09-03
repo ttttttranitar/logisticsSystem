@@ -132,6 +132,44 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         });
         return false;//通过表单提交
     });
+    element.on('tab(demo)', function(data){
+        if (data.index === 1) {
+            table.render({
+                elem: '#cusTable',
+                height: 'full-170',
+                url: '../../../OrderServlet?method=show', //数据接口
+                limit: 10,
+                limits: [ 10 ],
+                page: true //开启分页
+                ,cellMinWidth: 60
+                ,cols: [[
+                    { field: 'id', title: 'ID', fixed: 'left', sort: true, type: 'numbers' },
+                    { field: 'order_id', title: '订单编号', align: "center", sort: true },
+                    { field: 'sender_id', title: '发货客户编号', align: 'center' },
+                    { field: 'sender_name', title: '发货客户名称', align: "center" },
+                    { field: 'reciever_id', title: '收货客户编号', align: "center", width: 440 },
+                    { field: 'reciever_name', title: '收货客户名称', align: "center", width: 180 },
+                    { fixed: 'right', title:"操作", align: "center", toolbar: '#barDemo', width: 200 }
+                ]]
+            });
+            // 监听工具条
+            table.on('tool(cusTool)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+                if (layEvent === 'detail') {
+                    layer.open({
+                        type: 2,
+                        title: '客户详细信息',
+                        content: [ 'ordershow.html?order_id=' + data.order_id, 'no' ],
+                        area: [ '85%', '85%' ],
+                        shadeClose: true,
+                        move: false
+                    });
+                }
+            });
+        }
+    });
 
 
 
