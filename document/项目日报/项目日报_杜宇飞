@@ -14,3 +14,6 @@
 2019/09/02
 1、car的实体类，service、serviceimpl、dao、daoimpl
 2、driver的servlet的部分功能
+2019/09/03
+1、完善driver的server的功能
+2、新创建一个实体类，存放司机和货车的数据
