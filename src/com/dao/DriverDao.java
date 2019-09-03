@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer;
 import com.entity.Driver;
 
 import java.sql.SQLException;
@@ -11,7 +12,9 @@ public interface DriverDao {
     //根据司机ID修改司机信息
     int modification(Driver driver_id) throws SQLException;
     //查询司机信息
-    Driver getDriver() throws SQLException;
+    List<Driver> getDriverList(int currentPage,int pageSize) throws SQLException;
     //根据司机ID查询司机信息
-    Driver getDriverNumber(Driver driver_id) throws SQLException;
+    Driver getDriverNumber(String driver_id) throws SQLException;
+    //总记录数
+    int getDriverCount() throws SQLException;
 }
