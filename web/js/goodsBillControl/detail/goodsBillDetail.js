@@ -34,7 +34,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
             layer.open({
                 type: 2,
                 title: '货运单信息修改',
-                content: [ 'modifyDetail.html?goodsBillId=' + data.goodsBillId ],
+                content: [ 'modifyDetail.html?goodsBillId=' + data.transport_id ],
                 area: [ '85%', '85%' ],
                 shadeClose: true,
                 move: false,
@@ -44,11 +44,11 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
                     })
                 }
             });
-        }  else if (layEvent === 'detail') {
+        }  else if (layEvent === 'detail') {//查询当前行的详情
             layer.open({
                 type: 2,
                 title: '货运单详细信息',
-                content: ['showDetail.html?goodsBillId=' + data.goodsBillId ],
+                content: ['showDetail.html?goodsBillId=' + data.transport_id ],//请求其他js获取当前行详情,当前行的id为请求参数
                 area: ['85%', '85%'],
                 shadeClose: true,
                 move: false,
@@ -68,8 +68,8 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
         table.render({
             elem: '#goodsBillTable' + (id + 1),
             height: 'full-170',
-            url: nginx_url + '/goodsBill/selectByEvent' + (id !== 3 ? array[id] : ''),
-            limit: 10,
+            url: "../../../TransportServlet?method=show",
+            limit: 8,//每页条目数
             limits: [10],
             request: {
                 pageName: 'pageNum' //页码的参数名称，默认：page
@@ -90,11 +90,10 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
             , cellMinWidth: 60
             , cols: [[
                 {title: 'ID', fixed: 'left', type: 'numbers', align: 'center'},
-                {field: 'goodsBillId', title: '货运单编号', align: 'center'},
-                {field: 'eventName', title: '事件名称', align: "center"},
-                {field: 'remark', title: '备注', align: 'center'},
-                {field: 'occurTime', title: '发生时间', align: "center", templet: '#createTime', sort: true },
-                {fixed: 'right', title: "操作", align: "center", toolbar: '#barDemo' + (id+1), width: 200}
+                {field: 'transport_id', title: '货运单编号', align: 'center'},
+                {field: 'transport_distinatin', title: '发货地址', align: "center"},
+                {field: 'transport_fee', title: '运输费', align: "center", templet: '#createTime', sort: true },
+                {field: 'transport_info', title: '备注', align: 'center'}
             ]]
         });
     }

@@ -6,13 +6,24 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
         table = layui.table,
         $ = layui.jquery;
 
-    let goodsBillCode = window.location.href.split("=")[1];
+    let transport_id = window.location.href.split("=")[1];//读取参数运单id
     $.ajax({
-        type: "get",
-        url: nginx_url + "/goodsBill/selectByCode/" + goodsBillCode,
+        type: "post",
+        url: "../../../TransportServlet?method=get",
+        data:"transportId="+transport_id,
+        dataType:"json",
         async: false,
         success: function (result) {
-            $.each(result, function (i, item) {
+            $("#transportId").val(result.transport_id);
+            $("#sendGoodsDate").val(result.start_date);
+            $("#receiveGoodsDate").val(result.end_date);
+            $("#sendGoodsAddr").val(result.transport_start);
+            $("#receiveGoodsAddr").val(result.transport_distinatin);
+            $("#payMode").val(result.pay_type);
+            $("#carriage").val(result.transport_fee);
+            $("#insurance").val(result.insurance_fee);
+            $("#remark").val(result.transport_info);
+            /*$.each(result, function (i, item) {
                 let temp_id = '#' + i;
                 $(temp_id).val(item);
             });
@@ -63,6 +74,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
                 value: new Date(result.writeDate)
                 // theme: 'grid'
             });
+        */
         }
 
     });

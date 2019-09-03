@@ -57,6 +57,20 @@ public class TransportServiceImpl implements TransportService {
 
 
     @Override
+    public int updateTransport(Transport transport) {
+        int result=0;
+        TransportDao dao=new TransportDaoImpl();
+        try{
+            result=dao.updateTransport(transport);
+        }catch (SQLException e){
+            System.err.println("数据库错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    @Override
     public int totalTransport() {
         TransportDao dao=new TransportDaoImpl();
         try{

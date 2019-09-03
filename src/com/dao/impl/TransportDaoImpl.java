@@ -80,4 +80,12 @@ public class TransportDaoImpl extends DButil implements TransportDao {
         }
         return result;
     }
+
+    @Override
+    public int updateTransport(Transport transport) throws SQLException {
+        int result=0;
+        String sql="update transport set start_date=?,end_date=?,pay_type=?,transport_fee=?,insurance_fee=?,transport_start=?,transport_distinatin=?,transport_info=? where transport_id=?";
+        result=updateDB(sql,transport.getStart_date(),transport.getEnd_date(),transport.getPay_type(),transport.getTransport_fee(),transport.getInsurance_fee(),transport.getTransport_start(),transport.getTransport_distinatin(),transport.getTransport_info(),transport.getTransport_id());
+        return result;
+    }
 }

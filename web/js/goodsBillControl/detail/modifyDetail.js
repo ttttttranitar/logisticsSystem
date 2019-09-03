@@ -6,12 +6,13 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
         table = layui.table,
         $ = layui.jquery;
 
-    let goodsBillCode = window.location.href.split("=")[1];
-    $.ajax({
-        type: "get",
-        url: nginx_url + "/goodsBill/selectByCode/" + goodsBillCode,
+    let transportId = window.location.href.split("=")[1];
+/*    $.ajax({
+        type: "post",
+        url: "../../../TransportServlet?method=update",
+        data: $("#goodsBillForm").serialize(),
         success: function (result) {
-            console.log(result);
+            /!*console.log(result);
             $.each(result, function (i, item) {
                 let temp_id = '#' + i;
                 $(temp_id).val(item);
@@ -55,27 +56,27 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
                 type: 'date',
                 value: new Date(result.predeliveryDate)
                 // theme: 'grid'
-            });
-            laydate.render({
+            });*!/
+           /!* laydate.render({
                 elem: '#writeDate',
                 type: 'date',
                 value: new Date(result.writeDate)
                 // theme: 'grid'
-            });
+            });*!/
         }
-    });
+    });*/
 
     form.on('submit(modifyGoodsBill)', function () {
 
         $("#goodsBillForm :input").each(function () {
             $(this).removeAttr("disabled");
-        });
+        });//提交前锁定表单
 
         $.ajax({
-            type: 'put',
-            url: nginx_url + '/goodsBill/updateByCode/' + goodsBillCode,
+            type: 'post',
+            url: "../../../TransportServlet?method=update"+"&transportId="+transportId,
             data: $("#goodsBillForm").serialize(),
-            dataType: "json",
+            dataType: "text",
             success: function (result) {
                 console.log(result);
                 if (result === "SUCCESS") {
