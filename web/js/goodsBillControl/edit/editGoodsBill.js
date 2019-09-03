@@ -103,14 +103,9 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             async: false,
             success: function (result) {
                 if (result == "SUCCESS") {
-                    layer.msg('订单添加成功', {
+                    layer.alert('订单添加成功', {
                         time: 800,
-                        icon: 1},
-                        function () {
-                            let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                            parent.layer.close(index); //再执行关闭
-                            window.parent.location.reload();//新增成功后刷新父界面
-                        }
+                        icon: 1}
                     );
                 /*    layer.open({
                         type: 2,
@@ -122,7 +117,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                     });*/
                     $("#resetForm").click();
                 } else {
-                    layer.msg('订单添加失败', {
+                    layer.alert('订单添加失败', {
                         time: 800,
                         icon: 2
                     });
