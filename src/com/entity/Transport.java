@@ -7,8 +7,8 @@ public class Transport {
     private String pay_type;//付款方式
     private String transport_fee;//运输费
     private String insurance_fee;//保险费
-    private String transport_start;//收货地址
-    private String transport_distinatin;//发货地址
+    private String transport_start;//发货地址
+    private String transport_distinatin;//收货地址
     private String transport_info;//备注
 
 

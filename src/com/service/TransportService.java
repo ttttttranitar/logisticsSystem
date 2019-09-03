@@ -10,5 +10,6 @@ public interface TransportService {
     public List<Transport> getTransportList(int curretPage, int pageSize);
     public int addTransport(Transport transport,String orderId);
     public String idGenerator(String orderId);
+    public int updateTransport(Transport transport);
     public  int totalTransport();
 }

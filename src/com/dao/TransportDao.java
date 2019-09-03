@@ -10,4 +10,5 @@ public interface TransportDao {
     public List<Transport> getTransportList(int currentPage, int pageSize) throws SQLException;
     public int addTransport(Transport transport) throws SQLException;
     public int totalTransport() throws SQLException;
+    public int updateTransport(Transport transport) throws SQLException;
 }
