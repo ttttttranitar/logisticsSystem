@@ -7,64 +7,71 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
         $ = layui.jquery;
 
     let transportId = window.location.href.split("=")[1];
-/*    $.ajax({
-        type: "post",
-        url: "../../../TransportServlet?method=update",
+    $.ajax({
+        type: "get",
+        dataType: "JSON",
+        url: "../../../TransportServlet?method=get&transportId="+transportId,
         data: $("#goodsBillForm").serialize(),
         success: function (result) {
-            /!*console.log(result);
-            $.each(result, function (i, item) {
-                let temp_id = '#' + i;
-                $(temp_id).val(item);
-            });
-
-            // 审核
-            if (result.ifAudit === '审核') {
-                $("#ifAudit").attr('checked', 'checked');
-                form.render('checkbox');
-            }
-
-            // 有效
-            if (result.validity === '有效') {
-                $("#validity").attr('checked', 'checked');
-                form.render('checkbox');
-            }
-
-            // 结账
-            if (result.ifSettleAccounts === '结账') {
-                $("#ifSettleAccounts").attr('checked', 'checked');
-                form.render('checkbox');
-            }
-
-            // 日期
-            laydate.render({
-                elem: '#sendGoodsDate',
-                type: 'date',
-                value: new Date(result.sendGoodsDate)
-                // theme: 'grid'
-            });
-            if (result.factDealDate != null && result.factDealDate !== '') {
-                laydate.render({
-                    elem: '#factDealDate',
-                    type: 'date',
-                    value: new Date(result.factDealDate)
-                    // theme: 'grid'
-                });
-            }
-            laydate.render({
-                elem: '#predeliveryDate',
-                type: 'date',
-                value: new Date(result.predeliveryDate)
-                // theme: 'grid'
-            });*!/
-           /!* laydate.render({
-                elem: '#writeDate',
-                type: 'date',
-                value: new Date(result.writeDate)
-                // theme: 'grid'
-            });*!/
+            $("#startDate").val(result.start_date);
+            $("#endDate").val(result.end_date);
+            $("#start").val(result.transport_start);
+            $("#distination").val(result.transport_distinatin);
+            $("#payType").val(result.pay_type);
+            $("#transportFee").val(result.transport_fee);
+            $("#insuranceFee").val(result.insurance_fee);
+            $("#transportInfo").val(result.transport_info);
         }
-    });*/
+    });
+
+            /*
+                        // 审核
+                        if (result.ifAudit === '审核') {
+                            $("#ifAudit").attr('checked', 'checked');
+                            form.render('checkbox');
+                        }
+
+                        // 有效
+                        if (result.validity === '有效') {
+                            $("#validity").attr('checked', 'checked');
+                            form.render('checkbox');
+                        }
+
+                        // 结账
+                        if (result.ifSettleAccounts === '结账') {
+                            $("#ifSettleAccounts").attr('checked', 'checked');
+                            form.render('checkbox');
+                        }
+
+                        // 日期
+                        laydate.render({
+                            elem: '#sendGoodsDate',
+                            type: 'date',
+                            value: new Date(result.sendGoodsDate)
+                            // theme: 'grid'
+                        });
+                        if (result.factDealDate != null && result.factDealDate !== '') {
+                            laydate.render({
+                                elem: '#factDealDate',
+                                type: 'date',
+                                value: new Date(result.factDealDate)
+                                // theme: 'grid'
+                            });
+                        }
+                        laydate.render({
+                            elem: '#predeliveryDate',
+                            type: 'date',
+                            value: new Date(result.predeliveryDate)
+                            // theme: 'grid'
+                        });*!/
+                       /!* laydate.render({
+                            elem: '#writeDate',
+                            type: 'date',
+                            value: new Date(result.writeDate)
+                            // theme: 'grid'
+                        });*!/
+                    }
+                });*/
 
     form.on('submit(modifyGoodsBill)', function () {
 
@@ -73,7 +80,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
         });//提交前锁定表单
 
         $.ajax({
-            type: 'post',
+            type: 'get',
             url: "../../../TransportServlet?method=update"+"&transportId="+transportId,
             data: $("#goodsBillForm").serialize(),
             dataType: "text",
@@ -86,6 +93,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
                     }, function () {
                         let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index); //再执行关闭
+                        window.parent.location.reload();//新增成功后刷新父界面
                     });
                 } else {
                     layer.msg('更新失败', {

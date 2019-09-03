@@ -38,11 +38,11 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
                 area: [ '85%', '85%' ],
                 shadeClose: true,
                 move: false,
-                end: function() {
+                /*end: function() {
                     table.reload('goodsBillTable1', {
                         url: nginx_url + '/goodsBill/selectByEvent' + array[0]
                     })
-                }
+                }*/
             });
         }  else if (layEvent === 'detail') {//查询当前行的详情
             layer.open({
@@ -71,7 +71,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
             url: "../../../TransportServlet?method=show",
             limit: 8,//每页条目数
             limits: [10],
-            request: {
+            /*request: {
                 pageName: 'pageNum' //页码的参数名称，默认：page
                 , limitName: 'limit' //每页数据量的参数名，默认：limit
             },
@@ -85,15 +85,16 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
             initSort: {
                 field: 'occurTime' //排序字段，对应 cols 设定的各字段名
                 ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
-            },
+            },*/
             page: true //开启分页
             , cellMinWidth: 60
             , cols: [[
                 {title: 'ID', fixed: 'left', type: 'numbers', align: 'center'},
                 {field: 'transport_id', title: '货运单编号', align: 'center'},
                 {field: 'transport_distinatin', title: '发货地址', align: "center"},
-                {field: 'transport_fee', title: '运输费', align: "center", templet: '#createTime', sort: true },
-                {field: 'transport_info', title: '备注', align: 'center'}
+                {field: 'transport_fee', title: '运输费', align: "center",/* templet: '#createTime',*/ sort: true },
+                {field: 'transport_info', title: '备注', align: 'center'},
+                { fixed: 'right', title:"操作", align: "center", toolbar: '#barDemo1', width: 200 }
             ]]
         });
     }

@@ -59,7 +59,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                 $("#sendGoodsCustomerTel").val(result.sender_phone);
                 $("#sendGoodsCustomerAddr").val(result.sender_address);
                 $("#receiveGoodsCustomerCode").val(result.reciever_id);
-                $("#reciever_name").val(result.receiveGoodsCustomer);
+                $("#receiveGoodsCustomer").val(result.reciever_name);
                 $("#receiveGoodsCustomerTel").val(result.reciever_phone);
                 $("#receiveGoodsCustomerAddr").val(result.reciever_address);
             }
