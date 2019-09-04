@@ -18,35 +18,35 @@ public class Transfer {//中转
         this.detailAddress = detailAddress;
     }
 
-    public String getcity() {
+    public String getCity() {
         return city;
     }
 
-    public void setcity(String city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public String getcompanyName() {
+    public String getCompanyName() {
         return companyName;
     }
 
-    public void setcompanyName(String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    public String getlinkPhone() {
+    public String getLinkPhone() {
         return linkPhone;
     }
 
-    public void setlinkPhone(String linkPhone) {
+    public void setLinkPhone(String linkPhone) {
         this.linkPhone = linkPhone;
     }
 
-    public String getdetailAddress() {
+    public String getDetailAddress() {
         return detailAddress;
     }
 
-    public void setdetailAddress(String detailAddress) {
+    public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
     }
 

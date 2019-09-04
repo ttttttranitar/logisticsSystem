@@ -14,7 +14,7 @@ public class TransferDaoImpl extends DButil implements TransferDao {
     @Override
     public int save(Transfer transfer) throws SQLException {
         String sql="insert into `transfer`(`city`,`companyName`,`linkPhone`,`detailAddress`) values(?,?,?,?)";
-        return updateDB(sql,transfer.getcity(),transfer.getcompanyName(),transfer.getlinkPhone(),transfer.getdetailAddress());
+        return updateDB(sql,transfer.getCity(),transfer.getCompanyName(),transfer.getLinkPhone(),transfer.getDetailAddress());
     }
         //通过id查询
     @Override
@@ -27,10 +27,10 @@ public class TransferDaoImpl extends DButil implements TransferDao {
             if (res.next()){
                 transfer =new Transfer();
                 transfer.setId(res.getInt("id"));
-                transfer.setcity(res.getString("city"));
-                transfer.setcompanyName(res.getString("companyName"));
-                transfer.setlinkPhone(res.getString("linkPhone"));
-                transfer.setdetailAddress(res.getString("detailAddress"));
+                transfer.setCity(res.getString("city"));
+                transfer.setCompanyName(res.getString("companyName"));
+                transfer.setLinkPhone(res.getString("linkPhone"));
+                transfer.setDetailAddress(res.getString("detailAddress"));
             }
         } finally {
                 closeALL(conn,stat,res);
@@ -41,8 +41,7 @@ public class TransferDaoImpl extends DButil implements TransferDao {
     @Override
     public List<Transfer> getTransferList(int page, int pageSize) throws SQLException {
        List<Transfer> transferList=new ArrayList<>();
-       String sql="select,id,`city`,`companyName`,`linkPhone`,`detailAddress`"+
-               "from `id` limit ?,?";
+       String sql="SELECT `id`,`city`,`companyName`,`linkPhone`,`detailAddress` FROM `transfer` LIMIT ?,?;";
         Transfer transfer;
         try {
             res=queryDB(sql,(page-1)*pageSize,pageSize);
@@ -50,10 +49,10 @@ public class TransferDaoImpl extends DButil implements TransferDao {
             while (res.next()){
                 transfer =new Transfer();
                 transfer.setId(res.getInt("id"));
-                transfer.setcity(res.getString("city"));
-                transfer.setcompanyName(res.getString("companyName"));
-                transfer.setlinkPhone(res.getString("linkPhone"));
-                transfer.setdetailAddress(res.getString("detailAddress"));
+                transfer.setCity(res.getString("city"));
+                transfer.setCompanyName(res.getString("companyName"));
+                transfer.setLinkPhone(res.getString("linkPhone"));
+                transfer.setDetailAddress(res.getString("detailAddress"));
                 transferList.add(transfer);
             }
         } finally {
