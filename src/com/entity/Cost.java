@@ -1,7 +1,7 @@
 package com.entity;
 
 public class Cost {//资金类
-    private int id;
+    private int id;//id
     private double income;//收入
     private double payout;//支出
     private double bizIncome;//营业收入

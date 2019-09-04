@@ -60,7 +60,7 @@ public class CostServlet extends HttpServlet {
             out.print(costListJSON);
         }else if (method.equals("show_income")) {//显示
             Cost cost = costService.getCost();
-            String costJSON = JSON.toJSONString(cost);
+            String costJSON = JSON.toJSONStringWithDateFormat(cost, "yyyy-MM-dd HH:mm:ss");
             out.print(costJSON);
         }
     }

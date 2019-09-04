@@ -40,7 +40,7 @@ public class CostDaoImpl extends DButil implements CostDao {
     }
 
     @Override
-    public Cost getCost() throws SQLException {//查询成本
+    public Cost getCost() throws SQLException {//查询成本表
         String sql="SELECT `id`,`income`,`payout`,`bizIncome`,`carriageMoney`,`insurance`,`unbizIncome`,`bizFee`,`carCarriage`,`conveyWage`,`manageFee`,`officeFee`,`houseRent`,`waterElecFee`,`phoneFee`,`other`,`financeFee`,`profit`,`wage` FROM `cost` values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
        Cost cost;
         try {

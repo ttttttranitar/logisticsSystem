@@ -11,7 +11,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     });
 
     element.on('tab(demo)', function(data){
-        if (data.index === 0) {
+        if (data.index === 2) {
 
             refreshTable();
 
@@ -45,22 +45,20 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             });
         } else if (data.index === 2) {
             table.render({
-                elem: '#manageFeeTable',
+                elem: '#employeeWageTable',
                 height: 'full-170',
-                url: "../../../CostServlet?method=CostList", //数据接口
+                url: nginx_url + '/selectAllEmp', //数据接口
                 limit: 10,
                 limits: [ 10 ],
-                page: true, //开启分页
-                cellMinWidth: 80,
-                cols: [[
+                page: true //开启分页
+                ,cellMinWidth: 80
+                ,cols: [[
                     { title: 'ID', fixed: 'left', sort: true, type: 'numbers' },
-                    { field: 'administrative_fee_id', title: '管理费用id', sort: true },
-                    { field: 'officeFee', title: '办公费' },
-                    { field: 'houseRent', title: '房租费' },
-                    { field: 'waterElecFee', title: '水电费' },
-                    { field: 'phoneFee', title: '电话费' },
-                    { field: 'writeDate', title: '填写日期', templet: '#createTime' },
-                    { title: '操作', fixed: 'right' , toolbar: '#barDemo2' }
+                    { field: 'employeeCode', title: '职员编号', sort: true },
+                    { field: 'employeeName', title: '职员姓名'},
+                    { field: 'department', title: '部门' },
+                    { field: 'position', title: '职位' },
+                    { fixed: 'right', title:"操作", align:"center", toolbar: '#barDemo1' }
                 ]]
             });
         }
@@ -138,34 +136,37 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             content: ['manageFee.html', 'no'],
             area: ['85%', '85%'],
             shadeClose: true,
-            move: false,
-            end: function() {
+            move: false
+            /*end: function() {
                 table.reload('manageFeeTable', {
                     url: nginx_url + '/check/selectManageFee'
                 })
-            }
+            }*/
         });
         return false;
     });
 
 
     function refreshTable() {
+
         table.render({
-            elem: '#employeeWageTable',
+            elem: '#manageFeeTable',
             height: 'full-170',
-            url: nginx_url + '/selectAllEmp', //数据接口
+            url: "../../../CostServlet?method=CostList", //数据接口
             limit: 10,
             limits: [ 10 ],
-            page: true //开启分页
-            ,cellMinWidth: 80
-            ,cols: [[
+            page: true, //开启分页
+            cellMinWidth: 80,
+            cols: [[
                 { title: 'ID', fixed: 'left', sort: true, type: 'numbers' },
-                { field: 'employeeCode', title: '职员编号', sort: true },
-                { field: 'employeeName', title: '职员姓名'},
-                { field: 'department', title: '部门' },
-                { field: 'position', title: '职位' },
-                { fixed: 'right', title:"操作", align:"center", toolbar: '#barDemo1' }
-            ]]
+            { field: 'administrative_fee_id', title: '管理费用id', sort: true },
+            { field: 'officeFee', title: '办公费' },
+            { field: 'houseRent', title: '房租费' },
+            { field: 'waterElecFee', title: '水电费' },
+            { field: 'phoneFee', title: '电话费' },
+            { field: 'writeDate', title: '填写日期', templet: '#createTime' },
+            { title: '操作', fixed: 'right' , toolbar: '#barDemo2' }
+    ]]
         });
     }
 

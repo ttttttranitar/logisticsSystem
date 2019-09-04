@@ -20,7 +20,7 @@ public class CostSeviceImpl implements CostService {
     }
 
     @Override
-    public Cost getCostByID(int administrative_fee_id) {
+    public Cost getCostByID(int administrative_fee_id) {//通过id查询
         try {
             return new CostDaoImpl().getCostByID(administrative_fee_id);
         } catch (SQLException e) {
@@ -30,7 +30,7 @@ public class CostSeviceImpl implements CostService {
     }
 
     @Override
-    public Cost getCost() {
+    public Cost getCost() {//成本表
         try {
             return new CostDaoImpl().getCost();
         } catch (SQLException e) {
@@ -50,7 +50,7 @@ public class CostSeviceImpl implements CostService {
     }
 
     @Override
-    public int getCostCount() {
+    public int getCostCount() {//总记录数
         try {
             return new CostDaoImpl().getCount();
         } catch (SQLException e) {

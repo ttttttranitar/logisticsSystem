@@ -10,9 +10,9 @@ public interface CostService {
     int save(Cost cost);
     //通过ID查询
     Cost getCostByID(int administrative_fee_id);
-    //查询成本
+    //查询成本表
     Cost getCost();
-    //客户列表
+    //列表
     List<Cost> getCostList(int page, int pageSize);
     //总记录数
     int getCostCount();
