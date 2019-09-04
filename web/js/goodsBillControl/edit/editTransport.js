@@ -93,7 +93,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
     // $("#addGoodsBill").click(function () {
     form.on('submit(addGoodsBill)', function () {
         $.ajax({//通过ajax提交表单
-            type: "post",
+            type: "get",
             url: "../../../TransportServlet?method=add",
             data: $("#goodsBillForm").serialize(),
             dataType: "text",
@@ -106,7 +106,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                         function () {
                             let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                             parent.layer.close(index); //再执行关闭
-                            window.parent.location.reload();//新增成功后刷新父界面
+                            /*window.parent.location.reload();//新增成功后刷新父界面*/
                         }
                     );
 

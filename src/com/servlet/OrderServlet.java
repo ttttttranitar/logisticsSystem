@@ -85,7 +85,7 @@ public class OrderServlet extends HttpServlet {
             String orderId=request.getParameter("orderId");
             OrderService service=new OrderServiceImpl();
             if(service.delOrder(orderId)>0){
-
+                pw.print("SUCCESS");
             }
         }
 
@@ -98,6 +98,7 @@ public class OrderServlet extends HttpServlet {
             if(orders!=null){
                 page.setData(orders);
                 page.setMsg("添加成功");
+                page.setCount(service.totalOrder());
                 String pageJSON=JSON.toJSONStringWithDateFormat(page,"yyyy-MM-dd hh:MM");
                 pw.print(pageJSON);
             }

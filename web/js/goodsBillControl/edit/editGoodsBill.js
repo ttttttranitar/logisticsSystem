@@ -161,7 +161,39 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                         shadeClose: true,
                         move: false
                     });
-                }
+                }else if(layEvent === 'del'){ //删除
+                    layer.confirm('真的删除么', function(index){
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        //向服务端发送删除指令
+                        $.ajax({
+                            type: "get",
+                            url: "../../../OrderServlet?method=del&orderId=" + data.order_id,
+                            success: function (result) {
+                                console.log(result);
+                            }
+                        });
+                        layer.msg('删除成功', {
+                            time: 800
+                        })
+                    });
+                }/*else if(layEvent === 'edit'){ //编辑
+
+                    layer.open({
+                        type: 2,
+                        title: '客户信息修改',
+                        content: [ 'orderModify.html?order_id=' + data.order_id, 'no' ],
+                        area: [ '85%', '85%' ],
+                        shadeClose: true,
+                        move: true
+                        /!*end: function() {
+                            table.reload('cusTable', {
+                                url: "customerModify.html"
+                            })
+                        }*!/
+                    });
+                }*/
+
             });
         }
     });
