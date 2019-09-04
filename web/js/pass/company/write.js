@@ -33,24 +33,13 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
             table.render({
                 elem: '#companyTable',
                 height: 'full-170',
-                url: nginx_url + '/transfer/findByPage',
+                url:"../../../TransferServlet?method=TransferList",
                 limit: 10,
                 limits: [10],
-                request: {
-                    pageName: 'pageNum' //页码的参数名称，默认：page
-                    , limitName: 'limit' //每页数据量的参数名，默认：limit
-                },
-                response: {
-                    statusName: 'code', //数据状态的字段名称，默认：code
-                    statusCode: 200, //成功的状态码，默认：0
-                    msgName: 'msg', //状态信息的字段名称，默认：msgz
-                    countName: 'count', //数据总数的字段名称，默认：count
-                    dataName: 'data' //数据列表的字段名称，默认：data
-                },
                 page: true //开启分页
                 , cellMinWidth: 60
                 , cols: [[
-                    { title: 'ID', fixed: 'left', type: 'numbers', align: 'center' },
+                    { title: 'id', fixed: 'left', type: 'numbers', align: 'center' },
                     { field: 'city', title: '所在城市', align: 'center' },
                     { field: 'companyName', title: '公司名称', align: "center" },
                     { field: 'linkPhone', title: '联系方式', align: 'center' },
@@ -65,9 +54,9 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
     form.on('submit(addCompany)', function () {
         $.ajax({
             type: 'post',
-            url: nginx_url + '/transfer/add',
+            url: "../../../TransferServlet?method=add",
             data: $("#transferComForm").serialize(),
-            dataType: 'json',
+            dataType: 'text',
             async: false,
             success: function (result) {
                 if (result === "SUCCESS") {

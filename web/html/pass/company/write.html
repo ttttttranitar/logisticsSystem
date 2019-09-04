@@ -15,13 +15,11 @@
     <div class="layui-tab-content" style="height: 100px; display: block">
         <div class="layui-tab-item layui-show">
             <div class="layui-form-item" style="margin-top: 20px">
-                <form class="layui-form" action="" id="transferComForm">
+                <form class="layui-form" action="../../../TransferServlet?method=show" method="post" id="transferComForm">
                     <div class="layui-form-item">
                         <label class="layui-form-label">城市</label>
                         <div class="layui-input-inline">
-                            <select name="city" lay-verify="required" id="city" lay-search>
-                                <option value="">请选择城市</option>
-                            </select>
+                            <input type="text" lay-verify="required" class="layui-input" id="city" name="city"  />
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -44,7 +42,7 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="addCompany" id="addCompany">提交</button>
+                            <button type="submit" class="layui-btn" lay-submit lay-filter="addCompany" id="addCompany">提交</button>
                             <button type="reset" id="resetForm" class="layui-btn layui-btn-primary">重置</button>
                         </div>
                     </div>
