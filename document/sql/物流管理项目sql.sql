@@ -1,4 +1,4 @@
-database logistics;
+create database logistics;
 create table emp(
 emp_id int(5) primary key auto_increment,
 emp_name varchar(20) not null,
@@ -86,7 +86,17 @@ alter table custom add contact_phone varchar(12);
 alter table car  add car_width double(5,2);
 alter table car  add car_height double(5,2);
 alter table driver add driver_address varchar(20);
-alter table driver_permit add driver_permit varchar(20);
+alter table driver add driver_permit varchar(20);
+alter table driver modify driver_id varchar(9) ;
+alter table driver add id_card varchar(20);
+
+create view v_car_diver
+as
+select  car.*,driver_id,driver_name,sex,birthdate,id_card,driver_license,operation_license,insurance_license,driver_permit,driver_address,driver_info
+from car, driver
+where car.car_id=driver.car_id;
+
+
 
 
 
