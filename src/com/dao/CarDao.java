@@ -12,4 +12,6 @@ public interface CarDao {
     Car getCarNumber(String car_id) throws SQLException;
     //查询所有车的信息
     List<Car> getCarList() throws SQLException;
+    //根据车牌号改信息
+    int modification(Car car_id) throws SQLException;
 }

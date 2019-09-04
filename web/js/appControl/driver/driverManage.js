@@ -1,5 +1,5 @@
 layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function() {
-    let element = layui.element,
+    var element = layui.element,
         $ = layui.jquery,
         form = layui.form,
         layer = layui.layer,
@@ -43,7 +43,7 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                 }
             }
         });
-        return false;
+        return true;
     });
 
     element.on('tab(driverFilter)', function(data){
@@ -51,29 +51,18 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
             table.render({
                 elem: '#driverTable',
                 height: 'full-170',
-                url: nginx_url + '/driverInfo/selectAllByPage', //数据接口
+                url:'../../../DriverServlet?method=driverListPage', //数据接口
                 limit: 10,
                 limits: [ 10 ],
-                request: {
-                    pageName: 'pageNum', //页码的参数名称，默认：page
-                    limitName: 'limit' //每页数据量的参数名，默认：limit
-                },
-                response: {
-                    statusName: 'code', //数据状态的字段名称，默认：code
-                    statusCode: 200, //成功的状态码，默认：0
-                    msgName: 'msg', //状态信息的字段名称，默认：msg
-                    countName: 'count', //数据总数的字段名称，默认：count
-                    dataName: 'data' //数据列表的字段名称，默认：data
-                },
                 page: true, //开启分页
                 cellMinWidth: 80,
                 cols: [[
                     { title: 'ID', fixed: 'left', sort: true, type: 'numbers', align: 'center' },
-                    { field: 'id', title: '司机编号', align: 'center' },
-                    { field: 'driverName', title: '司机姓名', align: 'center' },
-                    { field: 'phone', title: '电话', align: 'center' },
+                    { field: 'driver_id', title: '司机编号', align: 'center' },
+                    { field: 'driver_name', title: '司机姓名', align: 'center' },
+                    { field: 'driver_phone', title: '电话', align: 'center' },
                     { field: 'state', title: '状态', align: 'center' },
-                    { field: 'carNo', title: '车号', align: 'center' },
+                    { field: 'car_id', title: '车号', align: 'center' },
                     { field: 'carType', title: '车型', align: 'center' },
                     { fixed: 'right', title:"操作", align:"center", toolbar: '#barDemo', width: 200 }
                 ]]
@@ -81,8 +70,8 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
 
             // 监听工具条
             table.on('tool(driverTool)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-                let data = obj.data; //获得当前行数据
-                let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 
                 if(layEvent === 'del'){ //删除
                     layer.confirm('真的删除么', function(){
@@ -91,9 +80,9 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                         //向服务端发送删除指令
                         $.ajax({
                             type: "DELETE",
-                            url: nginx_url + "/driverInfo/delete/" + data.id,
+                            url: "../../../DriverServlet?method=delete" + data.driver_id,
                             async: false,
-                            dataType: 'json',
+                            dataType: 'text',
                             success: function (result) {
                                 console.log(result);
                                 if (result === 'SUCCESS') {
@@ -117,22 +106,22 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                 } else if(layEvent === 'edit'){ //编辑
                     layer.open({
                         type: 2,
-                        title: '司机 - ' + data.id + '信息修改',
-                        content: ['driverModify.html?id=' + data.id, 'no'],
+                        title: '司机 - ' + data.driver_id + '信息修改',
+                        content: ['driverModify.html?driver_id=' + data.driver_id, 'no'],
                         area: ['95%', '95%'],
                         shadeClose: true,
-                        move: false,
-                        end: function() {
+                        move: false
+                        /*end: function() {
                             table.reload('driverTable', {
                                 url: nginx_url + '/driverInfo/selectAllByPage'
                             })
-                        }
+                        }*/
                     });
                 } else if(layEvent === 'detail') {
                     layer.open({
                         type: 2,
-                        title: '司机 - ' + data.id + ' 信息详情',
-                        content: [ 'driverDetail.html?id=' + data.id, 'no' ],
+                        title: '司机 - ' + data.driver_id + ' 信息详情',
+                        content: [ 'driverDetail.html?driver_id=' + data.driver_id, 'no' ],
                         area: [ '95%', '95%' ],
                         shadeClose: true,
                         move: false

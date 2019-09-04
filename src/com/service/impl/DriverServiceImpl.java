@@ -95,4 +95,14 @@ public class DriverServiceImpl implements DriverService {
         }
         return false;
     }
+
+    @Override
+    public int delete(String driver_id) {
+        try {
+            return new DriverDaoIpml().delete(driver_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

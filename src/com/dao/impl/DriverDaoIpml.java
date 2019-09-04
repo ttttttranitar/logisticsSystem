@@ -19,8 +19,8 @@ public class DriverDaoIpml extends DButil implements DriverDao {
 
     @Override
     public int modification(Driver driver_id) throws SQLException {
-            String sql = "update  `driver` set (`driver_name`=?,`card`=?,`driver_phone`=?,`sex`=?,`birthdate`=?,`address`=?,`car_id`=?,`driver_info`=?,`driver_license`=?,`driver_permit`=?,`operation_license`=?,`insurance_license`=?) where `driver_id`=? ";
-            return updateDB(sql, driver_id.getDriver_name(),driver_id.getCard(), driver_id.getDriver_phone(), driver_id.getSex(), driver_id.getBirthdate(),driver_id.getAddress(),driver_id.getCar_id(), driver_id.getDriver_info(), driver_id.getDriver_license(),driver_id.getDriver_permit(),driver_id.getOperation_license(), driver_id.getInsurance_license());
+            String sql = "update  `driver` set `driver_name`=?,`card`=?,`driver_phone`=?,`sex`=?,`birthdate`=?,`address`=?,`car_id`=?,`driver_info`=?,`driver_license`=?,`driver_permit`=?,`operation_license`=?,`insurance_license`=? where `driver_id`=? ";
+            return updateDB(sql, driver_id.getDriver_name(),driver_id.getCard(), driver_id.getDriver_phone(), driver_id.getSex(), driver_id.getBirthdate(),driver_id.getAddress(),driver_id.getCar_id(), driver_id.getDriver_info(), driver_id.getDriver_license(),driver_id.getDriver_permit(),driver_id.getOperation_license(), driver_id.getInsurance_license(),driver_id.getDriver_id());
     }
     @Override
     public List<Driver> getDriverList(int currentPage,int pageSize) throws SQLException {
@@ -94,5 +94,11 @@ public class DriverDaoIpml extends DButil implements DriverDao {
             closeALL(conn,stat,res);
         }
         return count;
+    }
+
+    @Override
+    public int delete(String driver_id) throws SQLException {
+        String sql ="DELETE FROM `driver` WHERE `driver_id`=?";
+        return updateDB(sql,driver_id);
     }
 }

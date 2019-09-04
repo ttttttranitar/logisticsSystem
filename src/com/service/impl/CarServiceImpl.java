@@ -37,4 +37,14 @@ public class CarServiceImpl implements CarService {
             return null;
         }
     }
+
+    @Override
+    public int modification(Car car_id) {
+        try {
+            return new CarDaoImpl().modification(car_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

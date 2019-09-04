@@ -20,4 +20,6 @@ public interface DriverService {
     String IDgenerator();
     //判断数据库中是否有该编号
     boolean isExist(String customer_id);
+    //根据司机ID删除信息
+    int delete(String driver_id);
 }

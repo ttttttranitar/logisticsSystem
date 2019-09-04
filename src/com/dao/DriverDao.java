@@ -17,4 +17,6 @@ public interface DriverDao {
     Driver getDriverNumber(String driver_id) throws SQLException;
     //总记录数
     int getDriverCount() throws SQLException;
+    //根据司机ID删除信息
+    int delete(String driver_id) throws SQLException;
 }

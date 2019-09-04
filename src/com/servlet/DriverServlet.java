@@ -68,7 +68,7 @@ public class DriverServlet extends HttpServlet {
             Driver driver = new Driver(driver_id,driverName,idCard,phone,gender,birthday,address,carNo,remark,driveLicence,runLicence,bizLicence,insuranceCard);
             Car car = new Car(carNo,carType,allowCarryVolume,allowCarryWeight,carLength,carWidth,goodsHeight,engineNo,carFrameNo,carDept,1,carDeptTel);
             if(driverService.save(driver)>0 && carService.save(car)>0){
-                response.sendRedirect(request.getContextPath()+"/index.html");
+                pw.print("SUCCESS");
             }
         }else if(method.equals("driverListPage")){
             //获取页面当前页码page
@@ -91,6 +91,40 @@ public class DriverServlet extends HttpServlet {
             Cardriver cardriver = cardriverService.cardriver(driverId);
             String driverJSON = JSON.toJSONStringWithDateFormat((cardriver),"yyyy-MM-dd HH:mm:ss");
             pw.print(driverJSON);
+        }else if(method.equals("update")){
+            String driverId = request.getParameter("driverId");
+            String driverName = request.getParameter("driverName");
+            String idCard = request.getParameter("idCard");
+            String phone = request.getParameter("phone");
+            String gender = request.getParameter("gender");
+            String birthday = request.getParameter("birthday");
+            String address = request.getParameter("address");
+            String carNo = request.getParameter("carNo");
+            String carType = request.getParameter("carType");
+            Double allowCarryVolume = Double.valueOf(request.getParameter("allowCarryVolume"));
+            Double allowCarryWeight = Double.valueOf(request.getParameter("allowCarryWeight"));
+            Double carLength = Double.valueOf(request.getParameter("carLength"));
+            Double carWidth = Double.valueOf(request.getParameter("carWidth"));
+            Double goodsHeight = Double.valueOf(request.getParameter("goodsHeight"));
+            String driveLicence = request.getParameter("driveLicence");
+            String runLicence = request.getParameter("runLicence");
+            String bizLicence = request.getParameter("bizLicence");
+            String insuranceCard = request.getParameter("insuranceCard");
+            String carFrameNo = request.getParameter("carFrameNo");
+            String engineNo = request.getParameter("engineNo");
+            String carDept = request.getParameter("carDept");
+            String carDeptTel = request.getParameter("carDeptTel");
+            String remark = request.getParameter("remark");
+            Driver driver = new Driver(driverId,driverName,idCard,phone,gender,birthday,address,carNo,remark,driveLicence,runLicence,bizLicence,insuranceCard);
+            Car car = new Car(carNo,carType,allowCarryVolume,allowCarryWeight,carLength,carWidth,goodsHeight,engineNo,carFrameNo,carDept,1,carDeptTel);
+            if(driverService.modification(driver)>0 && carService.modification(car)>0){
+                pw.print("SUCCESS");
+            }
+        }else if(method.equals("delete")){
+            String driverId = request.getParameter("driverId");
+            if(driverService.delete(driverId)>0){
+                pw.print("SUCCESS");
+            }
         }
     }
 }

@@ -71,4 +71,10 @@ public class CarDaoImpl extends DButil implements CarDao {
         }
         return carList;
     }
+
+    @Override
+    public int modification(Car car_id) throws SQLException {
+        String sql = "UPDATE `car` SET `car_type`=?,`car_volume`=?,`car_lenght`=?,`car_weight`=?,`car_width`=?,`car_height`=?,`motor_id`=?,`VIN`=?,`company`=?,`is_company_car`=?,`company_tel`=? WHERE `car_id`=?";
+        return updateDB(sql,car_id.getCar_type(),car_id.getCar_volume(),car_id.getCar_lenght(),car_id.getCar_weight(),car_id.getCar_width(),car_id.getCar_height(),car_id.getMotor_id(),car_id.getVIN(),car_id.getCompany(),car_id.getIs_company_car(),car_id.getCompany_tel(),car_id.getCar_id());
+    }
 }

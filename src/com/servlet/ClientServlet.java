@@ -96,7 +96,6 @@ public class ClientServlet extends HttpServlet {
             Client client = clientService.getClientByID(customerCode);
             String clientIDJSON = JSON.toJSONStringWithDateFormat(client,"yyyy-MM-dd HH:mm:ss");
             out.print(clientIDJSON);
-
         }
     }
 }

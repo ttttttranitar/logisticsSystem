@@ -17,7 +17,7 @@
     <div class="layui-tab-content" style="height: 100px; display: block">
         <div class="layui-tab-item layui-show">
             <div class="layui-form-item">
-                <form class="layui-form" action="" id="driverForm">
+                <form class="layui-form" method="post" action="../../../DriverServlet?method=add" id="driverForm">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">司机姓名</label>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="addDriver" id="addDriver">立即提交</button>
+                            <button type="submit" class="layui-btn" lay-submit lay-filter="addDriver" id="addDriver">立即提交</button>
                             <button type="reset" id="resetForm" class="layui-btn layui-btn-primary">重置</button>
                         </div>
                     </div>
@@ -201,7 +201,6 @@
 </div>
 <script src="../../../layui/layui.js"></script>
 <script src="../../../js/jquery/jquery-3.3.1.js"></script>
-
 <script src="../../../js/nginx.js"></script>
 <script src="../../../js/appControl/driver/driverManage.js"></script>
 </body>

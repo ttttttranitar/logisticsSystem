@@ -9,7 +9,7 @@ public class Car {
     private Double car_width;//车宽
     private Double car_height;//车高
     private String motor_id;//发动机号
-    private String VIN;//车架号
+    private String vIN;//车架号
     private String company;//车属公司
     private int is_company_car;//公司车（是/否）
     private String company_tel;//公司电话
@@ -17,7 +17,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String car_id, String car_type, Double car_volume, Double car_weight, Double car_lenght, Double car_width, Double car_height, String motor_id, String VIN, String company, int is_company_car, String company_tel) {
+    public Car(String car_id, String car_type, Double car_volume, Double car_weight, Double car_lenght, Double car_width, Double car_height, String motor_id, String vIN, String company, int is_company_car, String company_tel) {
         this.car_id = car_id;
         this.car_type = car_type;
         this.car_volume = car_volume;
@@ -26,7 +26,7 @@ public class Car {
         this.car_width = car_width;
         this.car_height = car_height;
         this.motor_id = motor_id;
-        this.VIN = VIN;
+        this.vIN = vIN;
         this.company = company;
         this.is_company_car = is_company_car;
         this.company_tel = company_tel;
@@ -64,8 +64,8 @@ public class Car {
         this.motor_id = motor_id;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVIN(String vIN) {
+        this.vIN = vIN;
     }
 
     public void setCompany(String company) {
@@ -109,7 +109,7 @@ public class Car {
     }
 
     public String getVIN() {
-        return VIN;
+        return vIN;
     }
 
     public String getCompany() {
