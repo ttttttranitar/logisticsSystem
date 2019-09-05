@@ -65,8 +65,9 @@ public class DriverServlet extends HttpServlet {
             String carDept = request.getParameter("carDept");
             String carDeptTel = request.getParameter("carDeptTel");
             String remark = request.getParameter("remark");
+            int isCompanyCar=request.getParameter("switchValue")=="1"?1:0;
             Driver driver = new Driver(driver_id,driverName,idCard,phone,gender,birthday,address,carNo,remark,driveLicence,runLicence,bizLicence,insuranceCard);
-            Car car = new Car(carNo,carType,allowCarryVolume,allowCarryWeight,carLength,carWidth,goodsHeight,engineNo,carFrameNo,carDept,1,carDeptTel);
+            Car car = new Car(carNo,carType,allowCarryVolume,allowCarryWeight,carLength,carWidth,goodsHeight,engineNo,carFrameNo,carDept,isCompanyCar,carDeptTel);
             if(driverService.save(driver)>0 && carService.save(car)>0){
                 pw.print("SUCCESS");
             }

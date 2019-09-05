@@ -32,6 +32,16 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+    @Override
+    public int del(String customer_id) {
+        try {
+            return new ClientDaoImpl().del(customer_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     //查找编号是否存在
     @Override
     public boolean isExist(String customer_id) {

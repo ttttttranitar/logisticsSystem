@@ -14,12 +14,13 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
 
     $.ajax({
         type: "get",
-        url: nginx_url + "/vehicle/selectLeftCodes",
+        url: "../../../TransportServlet?method=show&limit=10",
+        dataType:"json",
         async: false,
         success: function (result) {
-            $.each(result, function (i, item) {
-                let option = "<option value='" + item + "'>";
-                option += item;
+            $.each(result.data, function (i, item) {
+                let option = "<option value='" + item.transport_id + "'>";
+                option += item.transport_id;
                 option += "</option>";
                 $("#goodsRevertBillCode").append(option);
             });
@@ -28,32 +29,52 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
     });
 
     $.ajax({
-        type: 'get',
-        url: nginx_url + '/route/findAllRegions',
+        type: 'post',
+        url: "../../../DriverServlet?method=driverListPage&limit=10",
         dataType: 'json',
         async: false,
         success: function (result) {
-            $.each(result, function (i, item) {
-                let option = '<option value="' + item.city + '">';
-                option += item.city;
+            $.each(result.data, function (i, item) {
+                let option = '<option value="' + item.driver_id + '">';
+                option += item.driver_id;
                 option += '</option>';
-                $("#loadStation").append(option);
-                $("#dealGoodsStation").append(option);
+                $("#driver").append(option);
+                /*$("#dealGoodsStation").append(option);*/
             });
             form.render('select');
         }
     });
 
-
     form.on('select(changeSend)', function (data) {
         // ajax
         $.ajax({
             type: 'get',
-            url: nginx_url + '/vehicle/findGoodsBill/' + data.value,
+            url:"../../../TransportServlet?method=get&transportId="+$("#goodsRevertBillCode").val(),
+            dataType:"json",
             success: function (result) {
-                $("#receiveGoodsLinkman").val(result.receiveGoodsCustomer);
-                $("#linkmanPhone").val(result.receiveGoodsCustomerTel);
-                $("#receiveGoodsDetailAddr").val(result.receiveGoodsCustomerAddr);
+                $("#startDate").val(result.start_date);
+                $("#endDate").val(result.end_date);
+                $("#transportFee").val(result.transport_fee);
+                $("#insuranceFee").val(result.insurance_fee);
+                $("#start").val(result.transport_start);
+                $("#distination").val(result.transport_distinatin);
+                $("#remark").val(result.transport_info);
+            }
+        });
+    });
+
+    form.on('select(changeSend2)', function (data) {
+        // ajax
+        $.ajax({
+            type: 'post',
+            url:"../../../TransportServlet?method=particulars&driverId="+$("#driver").val(),
+            dataType:"json",
+            success: function (result) {
+                $("#driverName").val(result.driver_name);
+                $("#driverPhone").val(result.driver_phone);
+                $("#carId").val(result.car_id);
+                $("#driverLicence").val(result.driver_license);
+                $("#driverPermission").val(result.driver_permit);
             }
         });
     });

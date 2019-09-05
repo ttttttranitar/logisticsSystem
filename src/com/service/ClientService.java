@@ -9,6 +9,8 @@ public interface ClientService {
     int save(Client client);
     //修改
     int update(Client client);
+    //删除
+    int del(String customer_id);
     //判断数据库中是否有该编号
     boolean isExist(String customer_id);
     //通过编号查找到客户

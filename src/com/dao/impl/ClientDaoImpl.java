@@ -22,6 +22,12 @@ public class ClientDaoImpl extends DButil implements ClientDao {
     }
 
     @Override
+    public int del(String customer_id) throws SQLException {
+        String sql = "DELETE FROM `custom` WHERE `custom_id`=?";
+        return updateDB(sql,customer_id);
+    }
+
+    @Override
     public Client getClientByID(String customer_id) throws SQLException {
         String sql = "SELECT `custom_id`,`custom_name`,`fax`,`phone`,`mail`,`addr`,`email`,`contact`,`contact_phone`,`client_type`,`company_type`,`company_scale` FROM custom WHERE custom_id=?";
         Client client=null;

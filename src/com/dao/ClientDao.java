@@ -11,6 +11,8 @@ public interface ClientDao {
     int save(Client client) throws SQLException;
     //修改客户
     int update(Client client) throws SQLException;
+    //删除客户
+    int del(String customer_id)throws SQLException;
     //通过编号查询客户
     Client getClientByID(String customer_id) throws SQLException;
     //带参数的客户列表

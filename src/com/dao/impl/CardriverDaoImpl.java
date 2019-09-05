@@ -11,7 +11,7 @@ public class CardriverDaoImpl extends DButil implements CardriverDao {
     public Cardriver cardriver(String driver_id) throws SQLException {//24
         /*String sql = "SELECT  car.*,driver_id,driver_name,sex,birthdate,card,driver_license,operation_license,insurance_license,driver_permit,address,driver_info FROM car, driver WHERE car.car_id=driver.car_id AND `driver_id`=?";*/
 
-        String sql = "SELECT d.`driver_id`,d.`driver_name`,d.`card`,d.`driver_phone`,d.`sex`,d.`birthdate`,d.`address`,d.`car_id`,d.`driver_info`,d.`driver_license`,d.`driver_permit`,d.`operation_license`,d.`insurance_license`,c.`car_type`,c.`car_volume`,c.`car_lenght`,c.`car_weight`,c.`car_width`,c.`car_height`,c.`motor_id`,c.`VIN`,c.`company`,c.`company_tel`,c.`is_company_car` FROM `driver` d,`car` c WHERE d.`car_id`=c.`car_id` AND  d.`car_id`=?";
+        String sql = "SELECT d.`driver_id`,d.`driver_name`,d.`card`,d.`driver_phone`,d.`sex`,d.`birthdate`,d.`address`,d.`car_id`,d.`driver_info`,d.`driver_license`,d.`driver_permit`,d.`operation_license`,d.`insurance_license`,c.`car_type`,c.`car_volume`,c.`car_lenght`,c.`car_weight`,c.`car_width`,c.`car_height`,c.`motor_id`,c.`VIN`,c.`company`,c.`company_tel`,c.`is_company_car` FROM `driver` d,`car` c WHERE d.`car_id`=c.`car_id` AND  d.`driver_id`=?";
 
 //        String sql="SELECT * FROM v_car_diver WHERE driver_id=?";
         Cardriver cardriver;
