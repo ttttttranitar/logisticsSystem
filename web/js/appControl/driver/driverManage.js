@@ -74,13 +74,13 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                 var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 
                 if(layEvent === 'del'){ //删除
-                    layer.confirm('真的删除么', function(){
-                        // obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                        // layer.close(index);
+                    layer.confirm('真的删除么', function(index){
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
                         //向服务端发送删除指令
                         $.ajax({
-                            type: "DELETE",
-                            url: "../../../DriverServlet?method=delete" + data.driver_id,
+                            type: "post",
+                            url: "../../../DriverServlet?method=delete&driver_id=" + data.driver_id,
                             async: false,
                             dataType: 'text',
                             success: function (result) {
@@ -99,7 +99,7 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                             }
                         });
                         table.reload('driverTable', {
-                            url: nginx_url + '/driverInfo/selectAllByPage'
+                            url:'../../../DriverServlet?method=driverListPage'
                         });
                     });
 

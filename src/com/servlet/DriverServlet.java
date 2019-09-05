@@ -121,9 +121,9 @@ public class DriverServlet extends HttpServlet {
                 pw.print("SUCCESS");
             }
         }else if(method.equals("delete")){
-            String driverId = request.getParameter("driverId");
-            if(driverService.delete(driverId)>0){
-                pw.print("SUCCESS");
+            String driverId = request.getParameter("driver_id");
+                if(driverService.delete(driverId)>0){
+                    pw.print("SUCCESS");
             }
         }
     }
