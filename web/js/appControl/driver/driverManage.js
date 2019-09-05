@@ -24,9 +24,9 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
     form.on('submit(addDriver)', function () {
         $.ajax({
             type: 'post',
-            url: nginx_url + '/driverInfo/add',
+            url:'../../../DriverServlet?method=add',
             data: $("#driverForm").serialize(),
-            dataType: 'json',
+            dataType: 'text',
             success: function (result) {
                 console.log(result);
                 if (result === 'SUCCESS') {
@@ -43,7 +43,7 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                 }
             }
         });
-        return true;
+        return false;
     });
 
     element.on('tab(driverFilter)', function(data){
