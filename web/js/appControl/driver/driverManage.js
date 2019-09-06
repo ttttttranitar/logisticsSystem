@@ -61,9 +61,9 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
                     { field: 'driver_id', title: '司机编号', align: 'center' },
                     { field: 'driver_name', title: '司机姓名', align: 'center' },
                     { field: 'driver_phone', title: '电话', align: 'center' },
-                    { field: 'state', title: '状态', align: 'center' },
+                    { field: 'driver_permit', title: '行驶证', align: 'center' },
                     { field: 'car_id', title: '车号', align: 'center' },
-                    { field: 'carType', title: '车型', align: 'center' },
+                    { field: 'driver_license', title: '驾照', align: 'center' },
                     { fixed: 'right', title:"操作", align:"center", toolbar: '#barDemo', width: 200 }
                 ]]
             });
