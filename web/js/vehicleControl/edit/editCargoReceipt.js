@@ -67,7 +67,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
         // ajax
         $.ajax({
             type: 'post',
-            url:"../../../TransportServlet?method=particulars&driverId="+$("#driver").val(),
+            url:"../../../DriverServlet?method=particulars&driverId="+$("#driver").val(),
             dataType:"json",
             success: function (result) {
                 $("#driverName").val(result.driver_name);
