@@ -82,6 +82,14 @@ create table transport(
  transport_info varchar(25)
  );
 
+ create table transport_contract(
+ transport_id varchar(12),
+ driver_id varchar(20),
+ start_date  varchar(16),
+ end_date varchar(16),
+ total_fee double(9,2)
+)
+
 alter table custom add contact_phone varchar(12);
 alter table car  add car_width double(5,2);
 alter table car  add car_height double(5,2);
