@@ -9,4 +9,5 @@ public interface TransportContractService {
     public TransportContract getContract(String transportId,String driverId);
     public List<TransportContract> getContractList(int currentPage, int pageSize);
     public int del(String transportId,String driverId);
+    public int totalContract();
 }

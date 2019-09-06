@@ -10,4 +10,5 @@ public interface TransportContractDao {
     TransportContract getContract(String transportId,String driverId) throws SQLException;
     List<TransportContract> getContractList(int currentPage,int pageSize) throws SQLException;
     int del(String transportId,String driverId) throws SQLException;
+    public int totalContract() throws SQLException;
 }

@@ -47,4 +47,14 @@ public class TransportContractServiceImpl implements com.service.TransportContra
             return -1;
         }
     }
+
+    @Override
+    public int totalContract() {
+        try{
+            return new TransportContractDaoImpl().totalContract();
+        }catch (SQLException e){
+            System.err.println("数据库错误");
+            return -1;
+        }
+    }
 }

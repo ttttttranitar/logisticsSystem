@@ -42,7 +42,7 @@ public class TransportContractDaoImpl extends DButil implements TransportContrac
         List<TransportContract> contractList =new ArrayList<TransportContract>();
         try{
             TransportContract contract=null;
-            res=queryDB(sql,currentPage,pageSize);
+            res=queryDB(sql,(currentPage-1)*pageSize,pageSize);
             while(res.next()){
                 contract=new TransportContract();
                 contract.setTransport_id(res.getString("transport_id"));
@@ -63,5 +63,21 @@ public class TransportContractDaoImpl extends DButil implements TransportContrac
         String sql="delete from transport_contract where transport_id=? and driver_id=?";
         int result=updateDB(sql,transportId,driverId);
         return result;
+    }
+
+    @Override
+    public int totalContract() throws SQLException {
+        String sql="select count(transport_id) from transport_contract";
+        try{
+            res=queryDB(sql);
+            int result=0;
+            if(res.next()){
+                result=res.getInt(1);
+            }
+            return result;
+        }finally {
+            closeALL(conn,stat,res);
+        }
+
     }
 }

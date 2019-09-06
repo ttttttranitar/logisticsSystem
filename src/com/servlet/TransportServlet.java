@@ -48,7 +48,7 @@ public class TransportServlet extends HttpServlet {
             if(service.addTransport(transport,orderId)>0){
                 session.setAttribute("transport",transport);
                 OrderService orderService=new OrderServiceImpl();
-                orderService.changeStatue("运输中",orderId);//更改订单状态
+                orderService.changeStatue("已揽货",orderId);//更改订单状态
                 pw.print("SUCCESS");
             }
         }

@@ -20,8 +20,10 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    type: "delete",
-                    url: nginx_url + "/vehicle/delete/" + data.goodsRevertBillCode,
+                    type: "post",
+                    url: "../../../TransportContractServlet?method=del" ,
+                    data:"transportId="+data.transport_id+"&driverId="+data.driver_id,
+                    dataType:"text",
                     success: function (result) {
                         console.log(result);
                     }
@@ -30,7 +32,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
                     time: 800
                 })
             });
-        } else if(layEvent === 'edit'){ //编辑
+        } /*else if(layEvent === 'edit'){ //编辑
             layer.open({
                 type: 2,
                 title: '货运回执单信息修改',
@@ -53,7 +55,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
                 shadeClose: true,
                 move: false,
             });
-        }
+        }*/
 
     });
 
@@ -68,28 +70,19 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function () {
         table.render({
             elem: '#cargoReceiptTable' + (id + 1),
             height: 'full-170',
-            url: nginx_url + '/vehicle/select' + (id !== 3 ? array[id] : ''),
+            url:"../../../TransportContractServlet?method=show",
             limit: 10,
             limits: [10],
-            request: {
-                pageName: 'pageNum' //页码的参数名称，默认：page
-                , limitName: 'limit' //每页数据量的参数名，默认：limit
-            },
-            response: {
-                statusName: 'code', //数据状态的字段名称，默认：code
-                statusCode: 200, //成功的状态码，默认：0
-                msgName: 'msg', //状态信息的字段名称，默认：msgz
-                countName: 'count', //数据总数的字段名称，默认：count
-                dataName: 'data' //数据列表的字段名称，默认：data
-            },
             page: true //开启分页
             , cellMinWidth: 60
             , cols: [[
                 {title: 'ID', fixed: 'left', type: 'numbers', align: 'center'},
-                {field: 'goodsRevertBillCode', title: '货运回执单编号', align: 'center'},
-                {field: 'backBillState', title: '回执单状态', align: "center"},
-                {field: 'receiveGoodsLinkman', title: '收货联系人', align: 'center'},
-                {fixed: 'right', title: "操作", align: "center", toolbar: '#barDemo' + (id+1), width: 200}
+                {field: 'transport_id', title: '货运单编号', align: 'center'},
+                {field: 'driver_id', title: '司机编号', align: 'center'},
+                {field: 'start_date', title: '起运时间', align: "center"},
+                {field: 'end_date', title: '到达时间', align: 'center'},
+                {field: 'total_fee', title: '总运费', align: 'center'},
+                {fixed: 'right', title: "操作", align: "center", toolbar: '#barDemo', width: 200}
             ]]
         });
     }

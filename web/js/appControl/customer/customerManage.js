@@ -52,14 +52,17 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
                         layer.close(index);
                         //向服务端发送删除指令
                         $.ajax({
-                            type: "DELETE",
-                            url: nginx_url + "/deleteCus/" + data.customerCode,
+                            type: "post",
+                            url: "../../../ClientServlet?method=del&customerCode=" + data.customer_id,
                             success: function (result) {
                                 console.log(result);
                             }
                         });
                         layer.msg('删除成功', {
                             time: 800
+                        });
+                        table.reload('cusTable',{
+                            url:"../../../ClientServlet?method=ClientList"
                         })
                     });
                 } else if(layEvent === 'edit'){ //编辑
